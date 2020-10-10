@@ -1,0 +1,56 @@
+{
+    "name": "fitbit-sdk-extension",
+    "displayName": "Fitbit SDK Extension",
+    "description": "Visual Studio Code extension for fitbit SDK.",
+    "version": "0.0.1",
+    "publisher": "jeremyjeanson",
+    "icon": "images/icon.png",
+    "galleryBanner": {
+        "color": "002A42",
+        "theme": "light"
+    },
+    "repository": "https://github.com/jeremyjeanson/fitbit-sdk-extension",
+    "license": "MIT",
+    "engines": {
+        "vscode": "*"
+    },
+    "categories": [
+        "Other"
+    ],
+    "keywords": [
+        "fitbit",
+        "fitbit-sdk",
+        "fitbitdev"
+    ],
+    "contributes": {
+        "css": {
+            "customData": [
+                "./css/custom-data.json"
+            ]
+        },
+        "languages": [
+            {
+                "id": "svg",
+                "aliases": [
+                    "svg"
+                ],
+                "extensions": [
+                    ".gui",
+                    ".view",
+                    ".defs"
+                ],
+                "configuration": "./svg/language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "svg",
+                "scopeName": "source.svg",
+                "path": "./svg/grammar.json"
+            }
+        ]
+    },
+    "scripts": {
+        "pack": "vsce package"
+    }
+}

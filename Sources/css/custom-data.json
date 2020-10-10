@@ -1,0 +1,333 @@
+{
+    "version": 1.1,
+    "properties": [
+        {
+            "name": "x",
+            "description": "X coordinate of the given graphical element.",
+            "references": [
+                {
+                    "name": "Fitbit SVG Guide",
+                    "url": "https://dev.fitbit.com/build/guides/user-interface/svg/#coordinates-and-encapsulation"
+                }
+            ]
+        },
+        {
+            "name": "y",
+            "description": "Y coordinate of the given graphical element.",
+            "references": [
+                {
+                    "name": "Fitbit CSS Guide",
+                    "url": "https://dev.fitbit.com/build/guides/user-interface/svg/#coordinates-and-encapsulation"
+                }
+            ]
+        },
+        {
+            "name": "href",
+            "description": "Path to the image to display.",
+            "references": [
+                {
+                    "name": "Fitbit CSS Guide",
+                    "url": "https://dev.fitbit.com/build/guides/user-interface/css/"
+                }
+            ]
+        },
+        {
+            "name": "viewport-fill",
+            "description": "Color of the viewport.",
+            "references": [
+                {
+                    "name": "Fitbit CSS Guide",
+                    "url": "https://dev.fitbit.com/build/guides/user-interface/css/"
+                }
+            ]
+        },
+        {
+            "name": "display-align",
+            "description": "Alignment of the given graphical element to the display.",
+            "references": [
+                {
+                    "name": "Fitbit CSS Guide",
+                    "url": "https://dev.fitbit.com/build/guides/user-interface/css/"
+                }
+            ]
+        },
+        {
+            "name": "x1",
+            "description": "X coordinate of the start point of the line.",
+            "references": [
+                {
+                    "name": "Fitbit SVG Guide - Lines",
+                    "url": "https://dev.fitbit.com/build/guides/user-interface/svg/#lines"
+                }
+            ]
+        },
+        {
+            "name": "y1",
+            "description": "Y coordinate of the start point of the line.",
+            "references": [
+                {
+                    "name": "Fitbit SVG Guide - Lines",
+                    "url": "https://dev.fitbit.com/build/guides/user-interface/svg/#lines"
+                }
+            ]
+        },
+        {
+            "name": "x2",
+            "description": "X coordinate of the end point of the line.",
+            "references": [
+                {
+                    "name": "Fitbit SVG Guide - Lines",
+                    "url": "https://dev.fitbit.com/build/guides/user-interface/svg/#lines"
+                }
+            ]
+        },
+        {
+            "name": "y2",
+            "description": "Y coordinate of the end point of the line.",
+            "references": [
+                {
+                    "name": "Fitbit SVG Guide - Lines",
+                    "url": "https://dev.fitbit.com/build/guides/user-interface/svg/#lines"
+                }
+            ]
+        },
+        {
+            "name": "cx",
+            "description": "Coordinates of the center x of the circle.",
+            "references": [
+                {
+                    "name": "Fitbit SVG Guide - Circle",
+                    "url": "https://dev.fitbit.com/build/guides/user-interface/svg/#circles"
+                }
+            ]
+        },
+        {
+            "name": "cy",
+            "description": "Coordinates of the y of the circle.",
+            "references": [
+                {
+                    "name": "Fitbit SVG Guide - Circle",
+                    "url": "https://dev.fitbit.com/build/guides/user-interface/svg/#circles"
+                }
+            ]
+        },
+        {
+            "name": "r",
+            "description": "Radius of the circle.",
+            "references": [
+                {
+                    "name": "Fitbit SVG Guide - Circle",
+                    "url": "https://dev.fitbit.com/build/guides/user-interface/svg/#circles"
+                }
+            ]
+        },
+        {
+            "name": "text-buffer",
+            "description": "Holds the text string.",
+            "references": [
+                {
+                    "name": "Fitbit SVG Guide - Text",
+                    "url": "https://dev.fitbit.com/build/guides/user-interface/svg/#text"
+                }
+            ]
+        },
+        {
+            "name": "text-length",
+            "description": "Specifies the number of characters to reserve for the text string. Will be rounded up to a multiple of 4.",
+            "references": [
+                {
+                    "name": "Fitbit SVG Guide - Text",
+                    "url": "https://dev.fitbit.com/build/guides/user-interface/svg/#text"
+                }
+            ]
+        },
+        {
+            "name": "line-increment",
+            "description": "Specifies the line, or row height.",
+            "references": [
+                {
+                    "name": "Fitbit SVG Guide - Textarea",
+                    "url": "https://dev.fitbit.com/build/guides/user-interface/svg/#textarea"
+                }
+            ]
+        },
+        {
+            "name": "rows",
+            "description": "Constrains the number of rows.",
+            "references": [
+                {
+                    "name": "Fitbit SVG Guide - Textarea",
+                    "url": "https://dev.fitbit.com/build/guides/user-interface/svg/#textarea"
+                }
+            ]
+        },
+        {
+            "name": "arc-width",
+            "description": "Arc thickness in pixels, or %-expression. Maximum 31.",
+            "references": [
+                {
+                    "name": "Fitbit SVG Guide - Arc",
+                    "url": "https://dev.fitbit.com/build/guides/user-interface/svg/#arc"
+                }
+            ]
+        },
+        {
+            "name": "start-angle",
+            "description": "Start angle in degrees, with 0 at 12 o'clock.",
+            "references": [
+                {
+                    "name": "Fitbit SVG Guide - Arc",
+                    "url": "https://dev.fitbit.com/build/guides/user-interface/svg/#arc"
+                }
+            ]
+        },
+        {
+            "name": "sweep-angle",
+            "description": "Length of the arc in degrees.",
+            "references": [
+                {
+                    "name": "Fitbit SVG Guide - Arc",
+                    "url": "https://dev.fitbit.com/build/guides/user-interface/svg/#arc"
+                }
+            ]
+        },
+        {
+            "name": "gradient-x1",
+            "description": "X coordinate, define the first set of coordinates.",
+            "references": [
+                {
+                    "name": "Fitbit SVG Guide - Gradient Rectangle",
+                    "url": "https://dev.fitbit.com/build/guides/user-interface/svg/#gradient-rectangle"
+                }
+            ]
+        },
+        {
+            "name": "gradient-y1",
+            "description": "Y coordinate, define the first set of coordinates.",
+            "references": [
+                {
+                    "name": "Fitbit SVG Guide - Gradient Rectangle",
+                    "url": "https://dev.fitbit.com/build/guides/user-interface/svg/#gradient-rectangle"
+                }
+            ]
+        },
+        {
+            "name": "gradient-x2",
+            "description": "X coordinate, define the second set of coordinates.",
+            "references": [
+                {
+                    "name": "Fitbit SVG Guide - Gradient Rectangle",
+                    "url": "https://dev.fitbit.com/build/guides/user-interface/svg/#gradient-rectangle"
+                }
+            ]
+        },
+        {
+            "name": "gradient-y2",
+            "description": "X coordinate, define the second set of coordinates.",
+            "references": [
+                {
+                    "name": "Fitbit SVG Guide - Gradient Rectangle",
+                    "url": "https://dev.fitbit.com/build/guides/user-interface/svg/#gradient-rectangle"
+                }
+            ]
+        },
+        {
+            "name": "gradient-type",
+            "description": "the type of effect to use, linear, radial, or bilinear.",
+            "references": [
+                {
+                    "name": "Fitbit SVG Guide - Gradient Rectangle",
+                    "url": "https://dev.fitbit.com/build/guides/user-interface/svg/#gradient-rectangle"
+                }
+            ]
+        },
+        {
+            "name": "gradient-color1",
+            "description": "Specify colors that are used in all gradient types.",
+            "references": [
+                {
+                    "name": "Fitbit SVG Guide - Gradient Rectangle",
+                    "url": "https://dev.fitbit.com/build/guides/user-interface/svg/#gradient-rectangle"
+                }
+            ]
+        },
+        {
+            "name": "gradient-color2",
+            "description": "Specify colors that are used in all gradient types.",
+            "references": [
+                {
+                    "name": "Fitbit SVG Guide - Gradient Rectangle",
+                    "url": "https://dev.fitbit.com/build/guides/user-interface/svg/#gradient-rectangle"
+                }
+            ]
+        },
+        {
+            "name": "gradient-color3",
+            "description": "Specify colors that are only used in bilinear gradients.",
+            "references": [
+                {
+                    "name": "Fitbit SVG Guide - Gradient Rectangle",
+                    "url": "https://dev.fitbit.com/build/guides/user-interface/svg/#gradient-rectangle"
+                }
+            ]
+        },
+        {
+            "name": "gradient-color4",
+            "description": "Specify colors that are only used in bilinear gradients.",
+            "references": [
+                {
+                    "name": "Fitbit SVG Guide - Gradient Rectangle",
+                    "url": "https://dev.fitbit.com/build/guides/user-interface/svg/#gradient-rectangle"
+                }
+            ]
+        },
+        {
+            "name": "gradient-opacity1",
+            "description": "Opacity of gradient color 1. Each gradient color can also have opacity.",
+            "references": [
+                {
+                    "name": "Fitbit SVG Guide - Gradient Rectangle",
+                    "url": "https://dev.fitbit.com/build/guides/user-interface/svg/#gradient-rectangle"
+                }
+            ]
+        },
+        {
+            "name": "gradient-opacity2",
+            "description": "Opacity of gradient color 2. Each gradient color can also have opacity.",
+            "references": [
+                {
+                    "name": "Fitbit SVG Guide - Gradient Rectangle",
+                    "url": "https://dev.fitbit.com/build/guides/user-interface/svg/#gradient-rectangle"
+                }
+            ]
+        },
+        {
+            "name": "gradient-opacity3",
+            "description": "Opacity of gradient color 3. Each gradient color can also have opacity.",
+            "references": [
+                {
+                    "name": "Fitbit SVG Guide - Gradient Rectangle",
+                    "url": "https://dev.fitbit.com/build/guides/user-interface/svg/#gradient-rectangle"
+                }
+            ]
+        },
+        {
+            "name": "gradient-opacity4",
+            "description": "Opacity of gradient color 4. Each gradient color can also have opacity.",
+            "references": [
+                {
+                    "name": "Fitbit SVG Guide - Gradient Rectangle",
+                    "url": "https://dev.fitbit.com/build/guides/user-interface/svg/#gradient-rectangle"
+                }
+            ]
+        },
+        {
+            "name": "value",
+            "description": "Set the value."
+        },
+        {
+            "name": "mode",
+            "description": "Set the mode."
+        }
+    ]
+}

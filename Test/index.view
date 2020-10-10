@@ -1,0 +1,7 @@
+<svg id="container">
+    <!-- Foo  -->
+    <!-- #region Foo -->
+    <svg />
+    <svg />
+    <!-- #endregion -->
+</svg>

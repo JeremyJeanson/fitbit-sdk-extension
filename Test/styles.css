@@ -1,0 +1,63 @@
+#container{
+    x:0;
+    y:0;
+    fill: black;
+    viewport-fill:white;
+    visibility:hidde;
+    opacity: 0.3;
+
+    /* arcs*/
+    x1:0;
+    y1:0;
+    x2:0;
+    y2:0;
+    stroke-width:1;
+    stroke-linecap:round;
+    display: none;
+    
+    /* Circles */
+    cx:0;
+    cy: 0;
+    r:0;
+
+    /* Text */
+    text-anchor:start;
+    display-align: center;
+    text-buffer:0;
+    text-length:0;
+    letter-spacing:0;
+    text-overflow: clip;
+    font-family:"";
+    font-size:0;
+    font-weight:light;
+    text-decoration:underline;
+    line-increment:0;
+    rows:0;
+
+    /* Arc */
+    arc-width: 0;
+    start-angle:0;
+    sweep-angle:0;
+
+    /* Transform */
+    transform:translate(50,100);
+
+    /* Gradient Rectangle */
+    gradient-x1: 0;
+    gradient-y1: 0;
+    gradient-x2: 0;
+    gradient-y2: 0;
+    gradient-type: linear;
+    gradient-color1: blue;
+    gradient-color2: white;
+    gradient-color3: red;
+    gradient-color4: yellow;
+    gradient-opacity1: 1;
+    gradient-opacity2: 1;
+    gradient-opacity3: 1;
+    gradient-opacity4: 1;
+
+    /* Text Components */
+    mode:1;
+    value:1;
+}
