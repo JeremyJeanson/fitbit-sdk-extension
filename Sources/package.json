@@ -2,12 +2,12 @@
     "name": "fitbit-sdk-extension",
     "displayName": "Fitbit SDK Extension",
     "description": "Visual Studio Code extension for fitbit SDK.",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "publisher": "jeremyjeanson",
     "icon": "images/icon.png",
     "galleryBanner": {
         "color": "002A42",
-        "theme": "light"
+        "theme": "dark"
     },
     "repository": "https://github.com/jeremyjeanson/fitbit-sdk-extension",
     "license": "MIT",
