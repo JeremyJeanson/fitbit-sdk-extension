@@ -67,6 +67,10 @@
         ]
     },
     "scripts": {
-        "pack": "vsce package"
+        "pack": "vsce package",
+        "deploy": "vsce publish --yarn"
+    },
+    "devDependencies": {
+        "vsce": "^1.81.1"
     }
 }
