@@ -1,7 +1,69 @@
 <svg id="container">
-    <!-- Foo  -->
+    <defs>
+        <symbol id="custom-textarea" type="dynamic-textarea" system-events="all">
+            <textarea id="text" fill="white" x="25" y="50" width="100%-50" font-size="25" />
+            <rect x="0" y="$+15" width="100%" height="2" fill="fb-orange" />
+        </symbol>
+        <symbol id="symbol">
+            
+        </symbol>
+    </defs>
+    <svg>
+        <!-- Comment -->
+        
+    </svg>
+    <section x="0" y="0" width="100%" height="100%">
+        <g id="id" transform="scale(2)">
+            
+        </g>
+    </section>
     <!-- #region Foo -->
-    <svg />
-    <svg />
+    
     <!-- #endregion -->
+    <rect x="0" y="0" width="100%" height="100%" fill="white" />    
+    <line x1="0" y1="0" x2="100%" y2="100%" fill="orange" stroke-width="2" />
+    <circle cx="50%" cy="50%" r="50%" fill="orange" />
+    <image x="0" y="0" width="100%" height="100%" href="image.png" />
+    <text x="0" y="0" fill="black"
+        font-family="System-Regular" font-size="30">Text</text>
+    <textarea x="0" y="0" width="100%" fill="black"
+        font-family="System-Regular" font-size="black">Text</textarea>
+    <use id="custom" href="#custom-textarea" x="0" y="0" width="100%">
+        <set href="text" attributeName="text-buffer" to="Text" />
+    </use>
+    <gradientRect x="0" y="0" width="100%" height="100%"
+        gradient-type="radial"
+        gradient-x1="0" gradient-y1="50"
+        gradient-x2="0" gradient-y2="100%-50"
+        gradient-color1="magenta"
+        gradient-color2="red" />
+    <gradientRect x="0" y="0" width="100%" height="100%"
+        gradient-type="linear"
+        gradient-x1="0" gradient-y1="50"
+        gradient-x2="0" gradient-y2="100%-50"
+        gradient-color1="magenta"
+        gradient-color2="red" />
+    <gradientRect x="0" y="0" width="100%" height="100%"
+        gradient-type="radial"
+        gradient-x1="50%" gradient-y1="50%"
+        gradient-x2="50%+150" gradient-y2="50%+150"
+        gradient-color1="magenta"
+        gradient-color2="blue" />
+    <gradientRect x="0" y="0" width="100%" height="100%"
+        gradient-type="bilinear"
+        gradient-x1="30" gradient-y1="30"
+        gradient-x2="100%-60" gradient-y2="100%-60"
+        gradient-color1="cyan"
+        gradient-color2="white"
+        gradient-color3="magenta"
+        gradient-color4="green" />
+    <!-- Foo -->
+    <rect x="0" y="0" width="100%" height="100%" fill="orange" />
+    <circle cx="50%" cy="50%" r="50%" fill="orange" />
+    <!-- Symbols -->
+    <use id="usesymbol" href="#symbol" fill="orange" />
+    <use id="usesymbol" href="#symbol">
+        <set href="image" attributeName="fill" to="orange" />
+    </use>
+    us
 </svg>
