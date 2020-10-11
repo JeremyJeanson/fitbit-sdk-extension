@@ -2,7 +2,7 @@
     "name": "fitbit-sdk-extension",
     "displayName": "Fitbit SDK Extension",
     "description": "Visual Studio Code extension for fitbit SDK.",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "publisher": "jeremyjeanson",
     "icon": "images/icon.png",
     "galleryBanner": {
@@ -63,6 +63,10 @@
             {
                 "language": "svg",
                 "path": "./svg/buttons-svg.code-snippets"
+            },
+            {
+                "language": "svg",
+                "path": "./svg/text-svg.code-snippets"
             }
         ]
     },

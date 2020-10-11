@@ -13,6 +13,7 @@ This extension is under active development. Features will be added over time.
 - [ ] SVG snippets.
     - [x] Basic controls.
     - [x] Buttons.
+    - [x] Texts.
     - [ ] Views.
     - [ ] Other.
 - [ ] SVG Language (only SVG components used by the Fitbit SDK, to avoid errors).

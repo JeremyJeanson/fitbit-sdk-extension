@@ -1,0 +1,13 @@
+<svg>
+    <link rel="import" href="/mnt/sysassets/widgets/marquee_text_widget.defs" />
+    <use id="textarea" href="#dynamic-textarea" x="50" y="50">
+        <set href="text" attributeName="text-buffer" to="Text" />
+    </use>
+    <use id="marquee" href="#marquee-text" font-size="32" y="50%-40" width="100%"
+        height="80" fill="white" mode="1" value="50">
+        <rect width="100%" height="100%" fill="black" opacity="0.2" />
+        <set href="group/text" attributeName="text-buffer"
+            to="Text" />
+        <set href="group/separator" attributeName="width" to="150" />
+    </use>
+</svg>
