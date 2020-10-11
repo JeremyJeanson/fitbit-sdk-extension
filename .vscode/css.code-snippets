@@ -1,0 +1,11 @@
+{
+    "styles": {
+        "prefix": "fitbitapplication",
+        "body": [
+            ".application-fill { fill: ${1:fb-orange}; }",
+            ".foreground-fill { fill: ${2:fb-white}; }",
+            ".background-fill { fill: ${3:fb-black}; }"
+        ],
+        "description": "Create default styles."
+    }
+}

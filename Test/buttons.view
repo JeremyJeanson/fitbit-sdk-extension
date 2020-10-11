@@ -1,0 +1,31 @@
+<svg>
+    <link rel="import" href="/mnt/sysassets/system_widget.defs" />
+    <use id="button" href="#text-button">
+        <set href="#text" attributeName="text-buffer" to="BUTTON" />
+    </use>
+    <use id="button" href="#text-button" class="text-button bottom application-fill">
+        <set href="#text" attributeName="text-buffer" to="BUTTON" />
+    </use>
+    <use id="button1" href="#text-button" class="text-button bottom left secondary application-fill">
+        <set href="#text" attributeName="text-buffer" to="LEFT" />
+    </use>
+    <use id="button2" href="#text-button" class="text-button bottom right application-fill">
+        <set href="#text" attributeName="text-buffer" to="RIGHT" />
+    </use>
+    <use id="button1" href="#text-button" class="text-button primary application-fill">
+        <set href="#text" attributeName="text-buffer" to="PRIMARY" />
+    </use>
+    <use id="button2" href="#text-button" class="text-button secondary application-fill">
+        <set href="#text" attributeName="text-buffer" to="SECONDARY" />
+    </use>
+    <use id="button" href="#textarea-button" class="text-button bottom application-fill">
+        <set href="text" attributeName="text-buffer" to="BUTTON" />
+    </use>
+    <use id="button" href="#icon-text-button" class="icon-text-button bottom application-fill">
+        <set href="text" attributeName="text-buffer" to="BUTTON" />
+        <set href="image " attributeName="href" to="image.png" />
+    </use>
+    <use id="button" href="#icon-button" class="medium-button application-fill">
+        <set href="image" attributeName="href" to="foo.png" />
+    </use>
+</svg>

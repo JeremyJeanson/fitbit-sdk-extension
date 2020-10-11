@@ -1,0 +1,86 @@
+{
+    "link-system-widget": {
+        "prefix": "linksystemwidget",
+        "body": [
+            "<link rel=\"import\" href=\"/mnt/sysassets/system_widget.defs\" />"
+        ],
+        "description": "Add link to system_widget.defs."
+    },
+    "button-text-only": {
+        "prefix": "buttontextonly",
+        "body": [
+            "<use id=\"${1:button}\" href=\"#text-button\">",
+            "\t<set href=\"text\" attributeName=\"text-buffer\" to=\"${2:BUTTON}\" />",
+            "</use>"
+        ],
+        "description": "Add basic Button Text."
+    },
+    "link-text-button": {
+        "prefix": "linkbuttontext",
+        "body": [
+            "<link rel=\"import\" href=\"/mnt/sysassets/widgets/text_button.defs\" />"
+        ],
+        "description": "Add link to text_button.defs."
+    },
+    "button-text": {
+        "prefix": "buttontext",
+        "body": [
+            "<use id=\"${1:button}\" href=\"#text-button\" class=\"text-button bottom application-fill\">",
+            "\t<set href=\"text\" attributeName=\"text-buffer\" to=\"${2:BUTTON}\" />",
+            "</use>"
+        ],
+        "description": "Add a Button Text at the bottom."
+    },
+    "button-text-primary-secondary": {
+        "prefix": "buttonprimarysecondary",
+        "body": [
+            "<use id=\"${1:button1}\" href=\"#text-button\" class=\"text-button primary application-fill\">",
+            "\t<set href=\"text\" attributeName=\"text-buffer\" to=\"${2:PRIMARY}\" />",
+            "</use>",
+            "<use id=\"${3:button2}\" href=\"#text-button\" class=\"text-button secondary application-fill\">",
+            "\t<set href=\"text\" attributeName=\"text-buffer\" to=\"${4:SECONDARY}\" />",
+            "</use>",
+        ],
+        "description": "Add a primary and secondary button."
+    },
+    "button-text-left-right": {
+        "prefix": "buttonleftright",
+        "body": [
+            "<use id=\"${1:button1}\" href=\"#text-button\" class=\"text-button bottom left secondary application-fill\">",
+            "\t<set href=\"text\" attributeName=\"text-buffer\" to=\"${2:LEFT}\" />",
+            "</use>",
+            "<use id=\"${3:button2}\" href=\"#text-button\" class=\"text-button bottom right application-fill\">",
+            "\t<set href=\"text\" attributeName=\"text-buffer\" to=\"${4:RIGHT}\" />",
+            "</use>",
+        ],
+        "description": "Add a left and right button."
+    },
+    "button-textarea": {
+        "prefix": "buttontextarea",
+        "body": [
+            "<use id=\"${1:button}\" href=\"#textarea-button\" class=\"text-button bottom application-fill\">",
+            "\t<set href=\"text\" attributeName=\"text-buffer\" to=\"${2:BUTTON}\" />",
+            "</use>"
+        ],
+        "description": "Add a Button Textarea at the bottom."
+    },
+    "button-icon-text": {
+        "prefix": "buttonicontext",
+        "body": [
+            "<use id=\"${1:button}\" href=\"#icon-text-button\" class=\"icon-text-button bottom application-fill\">",
+            "\t<set href=\"text\" attributeName=\"text-buffer\" to=\"${2:BUTTON}\" />",
+            "\t<set href=\"image\" attributeName=\"href\" to=\"${3:image.png}\" />",
+            "</use>"
+        ],
+        "description": "Add a button with text and icon at the bottom."
+    },
+    "button-icon": {
+        "prefix": "buttonicon",
+        "body": [
+            "<use id=\"${1:button}\" href=\"#icon-button\" class=\"${2|extra-large,large,medium,small|}-button application-fill\">",
+            "\t<set href=\"image\" attributeName=\"href\" to=\"${3:image.png}\" />",
+            "</use>"
+        ],
+        "description": "Add an icon button."
+    }
+}

@@ -1,3 +1,6 @@
+.application-fill { fill: fb-orange; }
+.foreground-fill { fill: fb-white; }
+.background-fill { fill: fb-black; }
 #container{
     x:0;
     y:0;

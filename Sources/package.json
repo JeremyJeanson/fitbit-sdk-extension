@@ -53,8 +53,16 @@
         ],
         "snippets": [
             {
+                "language": "css",
+                "path": "./css/css.code-snippets"
+            },
+            {
                 "language": "svg",
                 "path": "./svg/svg.code-snippets"
+            },
+            {
+                "language": "svg",
+                "path": "./svg/buttons-svg.code-snippets"
             }
         ]
     },

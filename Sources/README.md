@@ -11,6 +11,10 @@ This extension is under active development. Features will be added over time.
 - [x] SVG files associations.
 - [x] SVG coloration.
 - [ ] SVG snippets.
+    - [x] Basic controls.
+    - [x] Buttons.
+    - [ ] Views.
+    - [ ] Other.
 - [ ] SVG Language (only SVG components used by the Fitbit SDK, to avoid errors).
 
 It is done on my free time, I haven't planning with dates to do that ;)
