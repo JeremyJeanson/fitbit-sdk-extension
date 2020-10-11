@@ -19,6 +19,8 @@ jobs:
       - uses: actions/checkout@v2
       # Publish to the marketplace
       - name: Publish
-        run: npm run deploy
+        run: |
+          cd ./Sources
+          npm run deploy
         env:
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
