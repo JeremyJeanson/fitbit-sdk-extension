@@ -67,6 +67,10 @@
             {
                 "language": "svg",
                 "path": "./svg/text-svg.code-snippets"
+            },
+            {
+                "language": "svg",
+                "path": "./svg/views-svg.code-snippets"
             }
         ]
     },

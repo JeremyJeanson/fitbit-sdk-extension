@@ -1,0 +1,268 @@
+{
+	"link-baseview": {
+		"prefix": "linkbaseview",
+		"body": [
+			"<link rel=\"import\" href=\"/mnt/sysassets/widgets/baseview_widget.defs\" />"
+		],
+		"description": "Link to baseview_widget.defs."
+	},
+	"link-cycleview": {
+		"prefix": "linkcycleview",
+		"body": [
+			"<link rel=\"import\" href=\"/mnt/sysassets/widgets/baseview_widget.defs\" />",
+			"<link rel=\"import\" href=\"/mnt/sysassets/widgets/cycleview_widget.defs\" />"
+		],
+		"description": "Link to cycleview_widget.defs and baseview_widget.defs."
+	},
+	"link-cycleview-only": {
+		"prefix": "linkcycleviewonly",
+		"body": [
+			"<link rel=\"import\" href=\"/mnt/sysassets/widgets/cycleview_widget.defs\" />"
+		],
+		"description": "Link to cycleview_widget.defs."
+	},
+	"cycleview": {
+		"prefix": "cycleview",
+		"body": [
+			"<use id=\"${1:cycleview}\" href=\"#cycleview\">",
+			"\t<use href=\"#cycleview-item\">",
+			"\t\t$0",
+			"\t</use>",
+			"</use>"
+		],
+		"description": "Create a cycleview."
+	},
+	"cycleview-item": {
+		"prefix": "cycleviewitem",
+		"body": [
+			"<use href=\"#cycleview-item\">",
+			"\t$0",
+			"</use>",
+		],
+		"description": "Add an item to a cycleview."
+	},
+	"link-scrollview": {
+		"prefix": "linkscrollview",
+		"body": [
+			"<link rel=\"import\" href=\"/mnt/sysassets/widgets/baseview_widget.defs\" />",
+			"<link rel=\"import\" href=\"/mnt/sysassets/widgets/scrollview_widget.defs\" />"
+		],
+		"description": "Link to scrollview_widget.defs and baseview_widget.defs."
+	},
+	"link-scrollview-only": {
+		"prefix": "linkscrollviewonly",
+		"body": [
+			"<link rel=\"import\" href=\"/mnt/sysassets/widgets/scrollview_widget.defs\" />"
+		],
+		"description": "Link to scrollview_widget.defs."
+	},
+	"scrollview": {
+		"prefix": "scrollview",
+		"body": [
+			"<use id=\"${1:scrollview}\" href=\"#scrollview\">",
+			"\t<use href=\"#scrollview-item\" ${2|height=\"200\",display=\"flexible-height\"|}>",
+			"\t\t$0",
+			"\t</use>",
+			"</use>"
+		],
+		"description": "Create a cycleview."
+	},
+	"scrollview-item": {
+		"prefix": "scrollviewitem",
+		"body": [
+			"<use href=\"#scrollview-item\" ${1|height=\"200\",display=\"flexible-height\"|}>",
+			"\t$0",
+			"</use>",
+		],
+		"description": "Add an item to a cycleview."
+	},
+	"def-view-header": {
+		"prefix": "defviewheader",
+		"body": [
+			"<symbol id=\"view-header\" href=\"#scrollview-header\">",
+			"\t<rect fill=\"inherit\" x=\"0\" y=\"0\" width=\"100%\" height=\"100%\"/>",
+			"\t<text id=\"text\" x=\"50%\" y=\"50%+10\" fill=\"black\" font-size=\"30\"",
+			"\t\tfont-weight=\"bold\" text-anchor=\"middle\" />",
+			"</symbol>",
+		],
+		"description": "Define a view header."
+	},
+	"view-header": {
+		"prefix": "viewheader",
+		"body": [
+			"<use href=\"#view-header\" height=\"50\" fill=\"${1:black}\">",
+			"\t<set href=\"#text\" attributeName=\"text-buffer\" to=\"${2:Section 1}\" />",
+			"</use>",
+		],
+		"description": "Define a view header."
+	},
+	"link-tile-list": {
+		"prefix": "linklist",
+		"body": [
+			"<link rel=\"import\" href=\"/mnt/sysassets/widgets/baseview_widget.defs\" />",
+			"<link rel=\"import\" href=\"/mnt/sysassets/widgets/scrollbar.defs\" />",
+			"<link rel=\"import\" href=\"/mnt/sysassets/widgets/tile_list_widget.defs\" />"
+		],
+		"description": "Link to tile_list_widget.defs, scrollbar.defs and baseview_widget.defs."
+	},
+	"link-tile-list-only": {
+		"prefix": "linklistonly",
+		"body": [
+			"<link rel=\"import\" href=\"/mnt/sysassets/widgets/scrollbar.defs\" />",
+			"<link rel=\"import\" href=\"/mnt/sysassets/widgets/tile_list_widget.defs\" />"
+		],
+		"description": "Link to tile_list_widget.defs and scrollbar.defs."
+	},
+	"def-tile-list-header": {
+		"prefix": "deflistheader",
+		"body": [
+			"<symbol id=\"list-header\" href=\"#tile-list-header\" class=\"list-item header\">",
+			"\t<text id=\"text\" />",
+			"\t<rect class=\"line\" />",
+			"</symbol>",
+		],
+		"description": "Define a list-header."
+	},
+	"def-tile-list-item": {
+		"prefix": "deflistitem",
+		"body": [
+			"<symbol id=\"list-item\" href=\"#tile-list-item\" class=\"list-item\">",
+			"\t<text id=\"text\" />",
+			"\t<rect class=\"line\" />",
+			"</symbol>",
+		],
+		"description": "Define a list-item."
+	},
+	"def-tile-list-footer": {
+		"prefix": "deflistfooter",
+		"body": [
+			"<symbol id=\"list-header\" href=\"#tile-list-footer\" class=\"list-item footer\">",
+			"\t<text id=\"text\" />",
+			"</symbol>",
+		],
+		"description": "Define a list-footer."
+	},
+	"tile-list": {
+		"prefix": "list",
+		"body": [
+			"<use id=\"${1:list}\" href=\"#tile-list\" class=\"horizontal-pad\">",
+			"\t<use href=\"#list-header\">",
+			"\t\t<set href=\"#text\" attributeName=\"text-buffer\" to=\"${2:HEADER}\" />",
+			"\t</use>",
+			"\t<use href=\"#list-item\">",
+			"\t\t<set href=\"#text\" attributeName=\"text-buffer\" to=\"${3:Text Item}\" />",
+			"\t</use>",
+			"\t<use href=\"#list-footer\">",
+			"\t\t<set href=\"#text\" attributeName=\"text-buffer\" to=\"${4:FOOTER}\" />",
+			"\t</use>",
+			"</use>"
+		],
+		"description": "Create a list."
+	},
+	"tile-list-header": {
+		"prefix": "listheader",
+		"body": [
+			"<use href=\"#list-header\">",
+			"\t<set href=\"#text\" attributeName=\"text-buffer\" to=\"${1:HEADER}\" />",
+			"</use>"
+		],
+		"description": "Add a list-header."
+	},
+	"tile-list-item": {
+		"prefix": "listitem",
+		"body": [
+			"<use href=\"#list-item\">",
+			"\t<set href=\"#text\" attributeName=\"text-buffer\" to=\"${1:Text Item}\" />",
+			"</use>"
+		],
+		"description": "Add a list-item."
+	},
+	"tile-list-footer": {
+		"prefix": "listfooter",
+		"body": [
+			"<use href=\"#list-footer\">",
+			"\t<set href=\"#text\" attributeName=\"text-buffer\" to=\"${1:FOOTER}\" />",
+			"</use>"
+		],
+		"description": "Add a list-footer."
+	},
+	"tile-list-reorder": {
+		"prefix": "listreorder",
+		"body": [
+			"<var id=\"reorder-enabled\" value=\"${1|0,1|}\" />"
+		],
+		"description": "Configure list reordering functionality."
+	},
+	"tile-list-peek": {
+		"prefix": "listpeek",
+		"body": [
+			"<var id=\"peek-enabled\" value=\"${1|0,1|}\" />"
+		],
+		"description": "Configure list peek functionality."
+	},
+	"tile-list-align-mode": {
+		"prefix": "listalign-mode",
+		"body": [
+			"<var id=\"align-mode\" value=\"${1|0,1|}\" />"
+		],
+		"description": "Configure list align-mode."
+	},
+	"tile-list-pool": {
+		"prefix": "listvirtual",
+		"body": [
+			"<use id=\"${1:pool}\" href=\"#tile-list-pool\">",
+			"\t<use id=\"${1:pool}[0]\" href=\"#list-item\" />",
+			"\t<use id=\"${1:pool}[1]\" href=\"#list-item\" />",
+			"\t<use id=\"${1:pool}[2]\" href=\"#list-item\" />",
+			"\t<use id=\"${1:pool}[3]\" href=\"#list-item\" />",
+			"\t<use id=\"${1:pool}[4]\" href=\"#list-item\" />",
+			"\t<use id=\"${1:pool}[5]\" href=\"#list-item\" />",
+			"\t<use id=\"${1:pool}[6]\" href=\"#list-item\" />",
+			"\t<use id=\"${1:pool}[7]\" href=\"#list-item\" />",
+			"\t<use id=\"${1:pool}[8]\" href=\"#list-item\" />",
+			"\t<use id=\"${1:pool}[9]\" href=\"#list-item\" />",
+			"\t<use id=\"${1:pool}[10]\" href=\"#list-item\" />",
+			"\t<use id=\"${1:pool}[11]\" href=\"#list-item\" />",
+			"\t<use id=\"${1:pool}[12]\" href=\"#list-item\" />",
+			"\t<use id=\"${1:pool}[13]\" href=\"#list-item\" />",
+			"\t<use id=\"${1:pool}[14]\" href=\"#list-item\" />",
+			"</use>"
+		],
+		"description": "Create a virtual tile list."
+	},
+	"link-tumblerview": {
+		"prefix": "linktumblerview",
+		"body": [
+			"<link rel=\"import\" href=\"/mnt/sysassets/widgets/baseview_widget.defs\" />",
+			"<link rel=\"import\" href=\"/mnt/sysassets/widgets/tumblerview_widget.defs\" />"
+		],
+		"description": "Link to tumblerview_widget.defs and baseview_widget.defs."
+	},
+	"link-tumblerview-only": {
+		"prefix": "linktumblerview",
+		"body": [
+			"<link rel=\"import\" href=\"/mnt/sysassets/widgets/tumblerview_widget.defs\" />"
+		],
+		"description": "Link to tumblerview_widget.defs."
+	},
+	"tumblerview": {
+		"prefix": "tumblerview",
+		"body": [
+			"<use id=\"${1:tumbler}\" href=\"#tumblerview\">",
+			"\t<use id=\"${2:item}\" href=\"#tumbler-item\">",
+			"\t\t<set href=\"value/text\" attributeName=\"text-buffer\" to=\"${3:Text}\" />",
+			"\t</use>",
+			"</use>"
+		],
+		"description": "Create a tumblerview."
+	},
+	"tumblerview-item": {
+		"prefix": "tumblerviewitem",
+		"body": [
+			"<use id=\"${1:item}\" href=\"#tumbler-item\">",
+			"\t<set href=\"value/text\" attributeName=\"text-buffer\" to=\"${2:Text}\" />",
+			"</use>"
+		],
+		"description": "Add a tumblerview item."
+	},
+}

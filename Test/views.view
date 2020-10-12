@@ -1,0 +1,80 @@
+<svg>
+    <defs>
+        <link rel="import" href="/mnt/sysassets/widgets/baseview_widget.defs" />
+        <link rel="import" href="/mnt/sysassets/widgets/cycleview_widget.defs" />
+        <link rel="import" href="/mnt/sysassets/widgets/scrollview_widget.defs" />
+        <link rel="import" href="/mnt/sysassets/widgets/scrollbar.defs" />
+        <link rel="import" href="/mnt/sysassets/widgets/tile_list_widget.defs" />
+        <symbol id="list-header" href="#tile-list-header" class="list-item header">
+            <text id="text" />
+            <rect class="line" />
+        </symbol>
+        <symbol id="list-item" href="#tile-list-item" class="list-item">
+            <text id="text" />
+            <rect class="line" />
+        </symbol>
+        <symbol id="list-header" href="#tile-list-footer" class="list-item footer">
+            <text id="text" />
+        </symbol>
+
+        <link rel="import" href="/mnt/sysassets/widgets/tumblerview_widget.defs" />
+    </defs>
+    <use id="cycleview" href="#cycleview">
+        <use href="#cycleview-item">
+            
+        </use>
+        <use href="#cycleview-item">
+            
+        </use>    
+    </use>
+    <use id="scrollview" href="#scrollview">
+        <use href="#scrollview-item" display="flexible-height">
+            
+        </use>
+        <use href="#view-header" height="50" fill="black">
+            <set href="#text" attributeName="text-buffer" to="Section 1" />
+        </use>
+        <use href="#scrollview-item" height="200">
+            
+        </use>
+    </use>
+    <use id="list" href="#tile-list" class="horizontal-pad">
+        <use href="#list-header">
+            <set href="#text" attributeName="text-buffer" to="HEADER" />
+        </use>
+        <use href="#list-item">
+            <set href="#text" attributeName="text-buffer" to="Text Item" />
+        </use>
+        <use href="#list-item">
+            <set href="#text" attributeName="text-buffer" to="Text Item" />
+        </use>
+        <use href="#list-footer">
+            <set href="#text" attributeName="text-buffer" to="FOOTER" />
+        </use>
+    </use>
+    <use id="pool1" href="#tile-list-pool">
+        <use id="pool1[0]" href="#list-item" />
+        <use id="pool1[1]" href="#list-item" />
+        <use id="pool1[2]" href="#list-item" />
+        <use id="pool1[3]" href="#list-item" />
+        <use id="pool1[4]" href="#list-item" />
+        <use id="pool1[5]" href="#list-item" />
+        <use id="pool1[6]" href="#list-item" />
+        <use id="pool1[7]" href="#list-item" />
+        <use id="pool1[8]" href="#list-item" />
+        <use id="pool1[9]" href="#list-item" />
+        <use id="pool1[10]" href="#list-item" />
+        <use id="pool1[11]" href="#list-item" />
+        <use id="pool1[12]" href="#list-item" />
+        <use id="pool1[13]" href="#list-item" />
+        <use id="pool1[14]" href="#list-item" />
+    </use>
+    <use id="tumbler" href="#tumblerview">
+        <use id="item0" href="#tumbler-item">
+            <set href="value/text" attributeName="text-buffer" to="0" />
+        </use>
+        <use id="item1" href="#tumbler-item">
+            <set href="value/text" attributeName="text-buffer" to="1" />
+        </use>
+    </use>
+</svg>
