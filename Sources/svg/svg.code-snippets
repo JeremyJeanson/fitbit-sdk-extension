@@ -16,7 +16,7 @@
 		"description": "Draw one rectangle on the screen."
 	},
 	"defs": {
-		"prefix": "defs",
+		"prefix": "def",
 		"body": [
 			"<defs>",
 			"\t$0",
