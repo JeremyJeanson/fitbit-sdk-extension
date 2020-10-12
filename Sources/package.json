@@ -54,31 +54,31 @@
         "snippets": [
             {
                 "language": "css",
-                "path": "./css/css.code-snippets"
+                "path": "./css/snippets/css.code-snippets"
             },
             {
                 "language": "svg",
-                "path": "./svg/svg.code-snippets"
+                "path": "./svg/snippets/svg.code-snippets"
             },
             {
                 "language": "svg",
-                "path": "./svg/buttons-svg.code-snippets"
+                "path": "./svg/snippets/buttons-svg.code-snippets"
             },
             {
                 "language": "svg",
-                "path": "./svg/text-svg.code-snippets"
+                "path": "./svg/snippets/texts-svg.code-snippets"
             },
             {
                 "language": "svg",
-                "path": "./svg/views-svg.code-snippets"
+                "path": "./svg/snippets/views-svg.code-snippets"
             },
             {
                 "language": "svg",
-                "path": "./svg/other-svg.code-snippets"
+                "path": "./svg/snippets/others-svg.code-snippets"
             },
             {
                 "language": "svg",
-                "path": "./svg/animations.code-snippets"
+                "path": "./svg/snippets/animations.code-snippets"
             }
         ]
     },
