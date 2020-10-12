@@ -10,17 +10,25 @@ This extension is under active development. Features will be added over time.
 - [ ] CSS Linter (to avoid problems with $).
 - [x] SVG files associations.
 - [x] SVG coloration.
-- [ ] SVG snippets.
+- [x] SVG snippets.
     - [x] Basic controls.
     - [x] Buttons.
     - [x] Texts.
     - [x] Views.
     - [x] Other.
-    - [ ] Animations.
+    - [x] Animations.
 - [ ] SVG Language (only SVG components used by the Fitbit SDK, to avoid errors).
 
-It is done on my free time, I haven't planning with dates to do that ;)
-Stay tuned!
+# Exemples
+
+Snippets to define symbols and animations.
+![An easy way create a custom components](Assets/demos/symbols.gif)
+
+Snippets to use Fitbit SDK components.
+![An easy way to use fitbit components components](Assets/demos/components.gif)
+
+Snippets to include link to the Fitbit SDK definitions.
+![An easy way create add link to Fitbit definion files](Assets/demos/defs.gif)
 
 # vscode-icons users
 If you are using the vscode-icons extension, you could change your settings to bind the SVG icon to the Fitbit DSK files.
