@@ -1,0 +1,12 @@
+<svg>
+    <defs>
+        <symbol id="symbol">
+            <animate attributeName="opacity" from="1" to="0" easing="ease-out"
+                begin="enable" end="load"  dur="3" final="|freeze,remove,restore,keep" />
+            <animate attributeName="opacity" from="1" to="0" easing="ease"
+                begin="click" end="disable"  dur="3" final="keep" />
+            <animateTransform attributeType="translate" from="0" to="100%" easing="linear"
+                begin="activate" end="activate"  dur="3" final="freeze" />
+        </symbol>
+    </defs>
+</svg>
