@@ -1,0 +1,21 @@
+{
+    "def-sprite-image": {
+        "prefix": "defspriteimage",
+        "body": [
+            "<symbol id=\"${1:frames}\" href=\"#sprite-image\">",
+            "\t<animate id=\"anim\" attributeName=\"value\" begin=\"enable\"",
+            "\t\tfrom=\"${2:1}\" to=\"${3:5}\" dur=\"${4:3}\"",
+            "\t\trepeatDur=\"${5:5}\" repeatCount=\"indefinite\" />",
+            "\t<image href=\"${6:frame_1.png}\" width=\"99\" height=\"99\" x=\"50%-50\" y=\"50%-50\" />",
+            "</symbol>"
+        ],
+        "description": "Define a sprite-image."
+    },
+    "sprite-image": {
+        "prefix": "spriteimage",
+        "body": [
+            "<use id=\"${1:animation}\" href=\"#${2:frames}\" />"
+        ],
+        "description": "Use a custom a sprite-image."
+    },
+}

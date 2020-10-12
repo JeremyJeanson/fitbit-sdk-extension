@@ -15,7 +15,8 @@ This extension is under active development. Features will be added over time.
     - [x] Buttons.
     - [x] Texts.
     - [x] Views.
-    - [ ] Other.
+    - [x] Other.
+    - [ ] Animations.
 - [ ] SVG Language (only SVG components used by the Fitbit SDK, to avoid errors).
 
 It is done on my free time, I haven't planning with dates to do that ;)

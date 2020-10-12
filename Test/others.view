@@ -1,0 +1,11 @@
+<svg>
+    <defs>
+        <symbol id="frames" href="#sprite-image">
+            <animate id="anim" attributeName="value" begin="enable"
+                from="1" to="5" dur="3"
+                repeatDur="5" repeatCount="indefinite" />
+            <image href="frame_1.png" width="99" height="99" x="50%-50" y="50%-50" />
+        </symbol>
+    </defs>
+    <use id="animation" href="#frames" />
+</svg>
