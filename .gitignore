@@ -351,3 +351,4 @@ MigrationBackup/
 
 # Vsix pacakges
 *.vsix
+out/
