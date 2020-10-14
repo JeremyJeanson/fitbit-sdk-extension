@@ -352,3 +352,4 @@ MigrationBackup/
 # Vsix pacakges
 *.vsix
 out/
+*.tsbuildinfo

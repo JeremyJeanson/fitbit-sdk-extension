@@ -1,15 +1,12 @@
-import { SnippetString } from "vscode";
 import {
     createConnection,
     TextDocuments,
     ProposedFeatures,
     InitializeParams,
     CompletionItem,
-    CompletionItemKind,
     TextDocumentPositionParams,
     TextDocumentSyncKind,
-    InitializeResult,
-    InsertTextFormat
+    InitializeResult
 } from "vscode-languageserver";
 
 import {
