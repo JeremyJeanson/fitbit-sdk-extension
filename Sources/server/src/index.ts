@@ -6,7 +6,8 @@ import {
     CompletionItem,
     TextDocumentPositionParams,
     TextDocumentSyncKind,
-    InitializeResult
+    InitializeResult,
+    HoverParams
 } from "vscode-languageserver";
 
 import {
@@ -37,13 +38,16 @@ connection.onInitialize((params: InitializeParams) => {
 });
 
 documents.onDidChangeContent(change => {
-    fitbitCompletion.setDocument(change.document);
+    //fitbitCompletion.setDocument(change.document);
 });
 
 // This handler provides the initial list of the completion items.
 connection.onCompletion(
-    (_textDocumentPosition: TextDocumentPositionParams): CompletionItem[] => {
-        return fitbitCompletion.oncompletion(_textDocumentPosition);
+    (e: TextDocumentPositionParams): CompletionItem[] => {
+        let uri = e.textDocument.uri;
+        let document = documents.get(uri);
+        if (document === undefined) return [];
+        return fitbitCompletion.oncompletion(document, e);
     }
 );
 

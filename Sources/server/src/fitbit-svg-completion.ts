@@ -1,4 +1,4 @@
-import { CompletionItem, CompletionItemKind, InsertTextFormat, Range, TextDocumentPositionParams, TextDocuments, TypeDefinitionRequest } from "vscode-languageserver";
+import { CompletionItem, CompletionItemKind, InsertTextFormat, MarkupKind, Range, TextDocumentPositionParams } from "vscode-languageserver";
 import { TextDocument } from "vscode-languageserver-textdocument";
 import { fitbitDefinitions, FitbitSvgType, IFitbitDefinition } from "./fitbit-svg-definitions";
 
@@ -29,19 +29,13 @@ interface IAnalyseResult {
  */
 const sanitateChars = ["\n", "\r", "\t"];
 
-let _doc: TextDocument | undefined;
-
-export function setDocument(doc: TextDocument): void {
-    _doc = doc;
-}
-
 /**
  * Completion is requested
  * @param params 
  */
-export function oncompletion(params: TextDocumentPositionParams): CompletionItem[] {
+export function oncompletion(document: TextDocument, params: TextDocumentPositionParams): CompletionItem[] {
     // Analyse the curretn posistion
-    const analyse = analysePosition(params);
+    const analyse = analysePosition(document, params);
 
     // No data -> return all
     if (analyse === undefined) return getCompletionItem(fitbitDefinitions, false);
@@ -77,15 +71,15 @@ export function oncompletion(params: TextDocumentPositionParams): CompletionItem
  * Analyse text from the gieven position
  * @param params 
  */
-function analysePosition(params: TextDocumentPositionParams): IAnalyseResult | undefined {
-    if (_doc === undefined) return undefined;
+function analysePosition(document: TextDocument, params: TextDocumentPositionParams): IAnalyseResult | undefined {
+    if (document === undefined) return undefined;
     let currentWord: string | undefined;
     // Alalyse from the current line (to the firt if requested)
     for (let i = params.position.line; i >= 0; i--) {
         const isCurrentline = i === params.position.line;
         // Read the line
         const line =
-            _doc.getText(Range.create(
+            document.getText(Range.create(
                 i, 0,
                 i, isCurrentline ? params.position.character : Number.MAX_VALUE));
         // Analyse the line
@@ -239,17 +233,22 @@ function getCompletionItem(definitionsFiltered: IFitbitDefinition[], currentWord
 
 /**
  * Completion need more informations
- * @param item 
+ * @param e 
  */
-export function onCompletionResolve(item: CompletionItem): CompletionItem {
+export function onCompletionResolve(e: CompletionItem): CompletionItem {
     // Check the id
-    if (item.data === undefined) return item;
+    if (e.data === undefined) return e;
     // Try to get more data from definitions
-    const definition = fitbitDefinitions[item.data];
+    const definition = fitbitDefinitions[e.data];
     // Check the definition
-    if (definition == undefined) return item;
+    if (definition == undefined) return e;
     // Add more data from the definition
-    item.detail = definition.detail;
-    item.documentation = "Fitbit SDK documentation";
-    return item;
+    e.detail = definition.detail;
+    if (definition.documentation) {
+        e.documentation = {
+            kind: MarkupKind.Markdown,
+            value: definition.documentation
+        };
+    }
+    return e;
 }
