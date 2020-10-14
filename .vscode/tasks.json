@@ -4,6 +4,7 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
+			"path": "Sources/",
 			"type": "npm",
 			"script": "watch",
 			"problemMatcher": "$tsc-watch",
@@ -15,6 +16,15 @@
 				"kind": "build",
 				"isDefault": true
 			}
+		},
+		{
+			"type": "npm",
+			"script": "compile",
+			"path": "Sources/",
+			"group": "build",
+			"problemMatcher": [],
+			"label": "npm: compile - Sources",
+			"detail": "tsc -b"
 		}
 	]
 }

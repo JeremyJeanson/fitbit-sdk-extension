@@ -1,0 +1,40 @@
+// A launch configuration that launches the extension inside a new window
+// Use IntelliSense to learn about possible attributes.
+// Hover to view descriptions of existing attributes.
+// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Attach to client extension",
+            "type": "extensionHost",
+            "request": "launch",
+            "args": [
+                "--extensionDevelopmentPath=${workspaceRoot}/Sources"
+            ],
+            "outFiles": [
+                "${workspaceRoot}/Sources/client/out/**/*.js"
+            ],
+            "preLaunchTask": "${defaultBuildTask}"
+        },
+        {
+            "name": "Attach to Server extension",
+            "type": "node",
+            "request": "attach",
+            "port": 6009,
+            "restart": true,
+            "outFiles": [
+                "${workspaceRoot}/Sources/server/out/**/*.js"
+            ]
+        },
+    ],
+    "compounds": [
+        {
+            "name": "Attach to Client + Server",
+            "configurations": [
+                "Attach to client extension",
+                "Attach to Server extension"
+            ]
+        }
+    ]
+}
