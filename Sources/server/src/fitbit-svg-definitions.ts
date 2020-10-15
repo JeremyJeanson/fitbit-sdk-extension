@@ -116,9 +116,23 @@ export const fitbitDefinitions: IFitbitDefinition[] = [
     { type: FitbitSvgType.Element, label: "link", detail: "Link file", documentation: "Add a link to a file to use." },
     { type: FitbitSvgType.Attribut, label: "rel", detail: "Relation type", insertText: "rel=\"${1|stylesheet,import|}\"", documentation: "Add a link to a file to use." },
 
+    // Animations
+    { type: FitbitSvgType.Element, label: "animate ", detail: "Animate an element", documentation: "Property animations allow the simple manipulation of an element's attributes. For example, changing the opacity, or the coordinates of an element.\n\nTo create a property animation, the `<animate>` element should be added as a child of the element you want to animate." },
+    { type: FitbitSvgType.Attribut, label: "begin", detail: "Begin event", insertText: "begin=\"${1|activate,click,disable,enable,load,mousedown,mousemove,mouseup|}\"", documentation: "Specify the event(s) that start the animation." },
+    { type: FitbitSvgType.Attribut, label: "end", detail: "End event", insertText: "end=\"${1|activate,click,disable,enable,load,mousedown,mousemove,mouseup|}\"", documentation: "Specify the event(s) that end the animation." },
+    { type: FitbitSvgType.Attribut, label: "final", detail: "Final state", insertText: "final=\"${1|freeze,remove,restore,keep|}\"", documentation: "Specifies the value of the attribute once the animation ends." },
+    { type: FitbitSvgType.Attribut, label: "easing", detail: "Easing", insertText: "easing=\"${1|linear,ease,ease-in,ease-out,ease-in-out,ease-out-in|}\"", documentation: "Can be used to specify a non-linear change in the animation." },
+    { type: FitbitSvgType.Attribut, label: "dur", detail: "Duration", documentation: "Can be used to specify a duration for an animation." },
+    { type: FitbitSvgType.Attribut, label: "repeatCount", detail: "Repeat count ", documentation: "Can be used to repeat the animations x times." },
+    { type: FitbitSvgType.Attribut, label: "repeatDur", detail: "Repeat duration", documentation: "Can be used to repeat the animations during x seconds." },
+
+    // Transformation Animations
+    { type: FitbitSvgType.Element, label: "animateTransform", detail: "Transformation animation", documentation: "Transformation animations allow an element to be easily translated (moved), scaled and rotated.\n\nThe `<animateTransform>` element must be added as a child of a `<g>` element, alongside the elements you want to manipulate." },
+    { type: FitbitSvgType.Attribut, label: "attributeType", detail: "Type of transformation", insertText: "attributeType=\"${1|translate,rotate,scale|}\"", documentation: "specifies the transformation to animate: `translate, `rotate`, or `scale`." },
+    { type: FitbitSvgType.Element, label: "from", detail: "From", documentation: "Specify the start value of a `<animateTransform>`." },
+
     /*
         { type: FitbitSvgType.Attribut, label: "", detail: "", documentation: "" },
         { type: FitbitSvgType.Attribut, label: "", detail: "", insertText: "=\"${1|,|}\"", documentation: "" },
-        { type: FitbitSvgType.Attribut, label: "", detail: "" },
     */
 ];
