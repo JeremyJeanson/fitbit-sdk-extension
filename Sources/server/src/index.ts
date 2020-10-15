@@ -44,18 +44,30 @@ documents.onDidChangeContent(change => {
 // This handler provides the initial list of the completion items.
 connection.onCompletion(
     (e: TextDocumentPositionParams): CompletionItem[] => {
-        let uri = e.textDocument.uri;
-        let document = documents.get(uri);
-        if (document === undefined) return [];
-        return fitbitCompletion.oncompletion(document, e);
+        try {
+            let uri = e.textDocument.uri;
+            let document = documents.get(uri);
+            if (document === undefined) return [];
+            return fitbitCompletion.oncompletion(document, e);
+        }
+        catch (ex) {
+            console.error("Fitbit-sdk-extension Server error :\n" + ex);
+            return [];
+        }
     }
 );
 
 // This handler resolves additional information for the item selected in
 // the completion list.
 connection.onCompletionResolve(
-    (item: CompletionItem): CompletionItem => {
-        return fitbitCompletion.onCompletionResolve(item);
+    (e: CompletionItem): CompletionItem => {
+        try {
+            return fitbitCompletion.onCompletionResolve(e);
+        }
+        catch (ex) {
+            console.error("Fitbit-sdk-extension Server error :\n" + ex);
+            return e;
+        }
     }
 );
 
