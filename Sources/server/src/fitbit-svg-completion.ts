@@ -38,18 +38,18 @@ export function oncompletion(document: TextDocument, params: TextDocumentPositio
     const analyse = analysePosition(document, params);
 
     // No data -> return all
-    if (analyse === undefined) return getCompletionItem(fitbitDefinitions, false);
+    if (analyse === undefined) return getCompletionItems(fitbitDefinitions, false);
 
     // Parent markup found -> return arguments
     if (analyse.markupName !== undefined) {
         // No word -> return all
         if (analyse.currentWord === undefined) {
-            return getCompletionItem(
+            return getCompletionItems(
                 fitbitDefinitions.filter(c => c.type === FitbitSvgType.Attribut),
                 false);
         }
         const word = analyse.currentWord;
-        return getCompletionItem(
+        return getCompletionItems(
             fitbitDefinitions.filter(c => c.type === FitbitSvgType.Attribut && c.label.startsWith(word)),
             false);
     }
@@ -57,12 +57,12 @@ export function oncompletion(document: TextDocument, params: TextDocumentPositio
     // No parent -> return all exepted arguments
     // No word -> return all
     if (analyse.currentWord === undefined) {
-        return getCompletionItem(
+        return getCompletionItems(
             fitbitDefinitions.filter(c => c.type !== FitbitSvgType.Attribut),
             analyse.currentWordHasMark);
     }
     const word = analyse.currentWord;
-    return getCompletionItem(
+    return getCompletionItems(
         fitbitDefinitions.filter(c => c.type !== FitbitSvgType.Attribut && c.label.startsWith(word)),
         analyse.currentWordHasMark);
 }
@@ -203,38 +203,65 @@ function sanitateWord(word: string): string {
  * Translate definitions to completion items
  * @param definitionsFiltered 
  */
-function getCompletionItem(definitionsFiltered: IFitbitDefinition[], currentWordHasMark: boolean): CompletionItem[] {
+function getCompletionItems(definitionsFiltered: IFitbitDefinition[], currentWordHasMark: boolean): CompletionItem[] {
     const result: CompletionItem[] = [];
     for (let i = 0; i < definitionsFiltered.length; i++) {
-        if (definitionsFiltered[i].type === FitbitSvgType.Container) {
-            // Format the text to insert
-            let insertText = `${definitionsFiltered[i].label}>\n\t$1\n</${definitionsFiltered[i].label}>`;
-            // Add "<" if it is missing
-            if (!currentWordHasMark) insertText = "<" + insertText;
-            result.push({
-                data: fitbitDefinitions.indexOf(definitionsFiltered[i]),
-                label: definitionsFiltered[i].label,
-                insertText: insertText,
-                insertTextFormat: InsertTextFormat.Snippet,
-                kind: CompletionItemKind.Module,
-            })
-        }
-
-        result.push({
-            data: fitbitDefinitions.indexOf(definitionsFiltered[i]),
-            label: definitionsFiltered[i].label,
-            insertText:
-                // Check if a snippet is avaiable
-                definitionsFiltered[i].insertText
-                    ? definitionsFiltered[i].insertText
-                    : `${definitionsFiltered[i].label}=\"$1\"`,
-            insertTextFormat: InsertTextFormat.Snippet,
-            kind: CompletionItemKind.Property,
-        })
+        result.push(getCompletionItem(definitionsFiltered[i], currentWordHasMark));
     }
     return result;
 }
 
+/**
+ * Translate definition to completion item
+ * @param definition 
+ * @param currentWordHasMark 
+ */
+function getCompletionItem(definition: IFitbitDefinition, currentWordHasMark: boolean): CompletionItem {
+    // Index of the data
+    const data = fitbitDefinitions.indexOf(definition);
+
+    // Switch type
+    switch (definition.type) {
+        case FitbitSvgType.Container: {
+            // Format the text to insert
+            let insertText = `${definition.label}>\n\t$1\n</${definition.label}>`;
+            // Add "<" if it is missing
+            if (!currentWordHasMark) insertText = "<" + insertText;
+            return {
+                data: data,
+                label: definition.label,
+                insertText: insertText,
+                insertTextFormat: InsertTextFormat.Snippet,
+                kind: CompletionItemKind.Module,
+            };
+        }
+        case FitbitSvgType.Element: {
+            // Format the text to insert
+            let insertText = `${definition.label}$1 />`;
+            // Add "<" if it is missing
+            if (!currentWordHasMark) insertText = "<" + insertText;
+            return {
+                data: data,
+                label: definition.label,
+                insertText: insertText,
+                insertTextFormat: InsertTextFormat.Snippet,
+                kind: CompletionItemKind.Module,
+            };
+        }
+    }
+    // Default -> Attribut
+    return {
+        data: data,
+        label: definition.label,
+        insertText:
+            // Check if a snippet is avaiable
+            definition.insertText
+                ? definition.insertText
+                : `${definition.label}=\"$1\"`,
+        insertTextFormat: InsertTextFormat.Snippet,
+        kind: CompletionItemKind.Property,
+    };
+}
 /**
  * Completion need more informations
  * @param e 
