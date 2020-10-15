@@ -224,7 +224,9 @@ function getCompletionItem(definition: IFitbitDefinition, currentWordHasMark: bo
     switch (definition.type) {
         case FitbitSvgType.Container: {
             // Format the text to insert
-            let insertText = `${definition.label}>\n\t$1\n</${definition.label}>`;
+            let insertText = definition.insertText
+                ? `${definition.label} ${definition.insertText}>\n\t$0\n</${definition.label}>`
+                : `${definition.label}>\n\t$0\n</${definition.label}>`;
             // Add "<" if it is missing
             if (!currentWordHasMark) insertText = "<" + insertText;
             return {
@@ -237,7 +239,9 @@ function getCompletionItem(definition: IFitbitDefinition, currentWordHasMark: bo
         }
         case FitbitSvgType.Element: {
             // Format the text to insert
-            let insertText = `${definition.label}$1 />`;
+            let insertText = definition.insertText
+                ? `${definition.label} ${definition.insertText}$0 />`
+                : `${definition.label}$0 />`;
             // Add "<" if it is missing
             if (!currentWordHasMark) insertText = "<" + insertText;
             return {
