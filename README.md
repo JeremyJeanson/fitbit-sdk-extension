@@ -7,7 +7,7 @@ This extension was built to help developers to use the Fitbit SDK when they use 
 This extension is under active development. Features will be added over time. 
 
 - [x] CSS custom data.
-- [ ] CSS Linter (to avoid problems with $).
+- [ ] CSS Linter (to avoid problems with `$`).
 - [x] SVG files associations.
 - [x] SVG coloration.
 - [x] SVG snippets.
@@ -17,7 +17,10 @@ This extension is under active development. Features will be added over time.
     - [x] Views.
     - [x] Other.
     - [x] Animations.
-- [ ] SVG Language (only SVG components used by the Fitbit SDK, to avoid errors).
+- [ ] SVG Language.
+    - [x] Completion (All SVG elements and attributs used by the Fitbit SDK, to avoid errors).
+    - [ ] Format.
+    - [ ] Validation.
 
 # Exemples
 
@@ -48,3 +51,6 @@ It could be done by adding this code to your Visual Studio Code settings :
     }
 ]
 ```
+
+# Contribute or report issues
+You can report any issue via GitHu. If you found one, please report it! This code was open to be shared and improved. If you have an idea, tell it or send a pull request. 
