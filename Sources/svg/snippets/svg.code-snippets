@@ -24,6 +24,13 @@
 		],
 		"description": "Zone to define symboles."
 	},
+	"link": {
+		"prefix": "link",
+		"body": [
+			"<link rel=\"${1|stylesheet,import|}\" href=\"$0\"/>",
+		],
+		"description": "Zone to define symboles."
+	},
 	"svg": {
 		"prefix": "svg",
 		"body": [
