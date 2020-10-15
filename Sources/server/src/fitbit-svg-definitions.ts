@@ -18,7 +18,7 @@ export const fitbitDefinitions: IFitbitDefinition[] = [
     { type: FitbitSvgType.Container, label: "svg", detail: "SVG Container", documentation: "This element is a container for all elements." },
 
     // Base attributs
-    { type: FitbitSvgType.Attribut, label: "id", detail: "Id", documentation: "Id to get the element from JavasScript or TypeScript." },
+    { type: FitbitSvgType.Attribut, label: "id", detail: "Id", documentation: "Id to get the element from JavasScript or TypeScript via document.getElementById()." },
     { type: FitbitSvgType.Attribut, label: "x", detail: "x coordinate", documentation: "Horizontal position of the element." },
     { type: FitbitSvgType.Attribut, label: "y", detail: "y coordinate", documentation: "Vertisal position of the element." },
     { type: FitbitSvgType.Attribut, label: "height", detail: "Height", documentation: "Height of the element." },
@@ -27,9 +27,11 @@ export const fitbitDefinitions: IFitbitDefinition[] = [
 
     // Common attributs
     { type: FitbitSvgType.Attribut, label: "fill", detail: "Fill color", documentation: "Color to fill the element or inner elements." },
+    { type: FitbitSvgType.Attribut, label: "viewport-fill", detail: "Viewport fill color", documentation: "Color to fill the element or inner elements." },
     { type: FitbitSvgType.Attribut, label: "opacity", detail: "Opacity", documentation: "Specifies the opacity of the element (between 0 and 1)." },
     { type: FitbitSvgType.Attribut, label: "visibility", detail: "Visibility", insertText: "visibility=\"${1|visible,hidden|}\"", documentation: "Specifies if the line should be `visible` or `hidden`." },
     { type: FitbitSvgType.Attribut, label: "display", detail: "Display", insertText: "display=\"${1|none,inline,inherit|}\"", documentation: "none, inline or inherit." },
+    { type: FitbitSvgType.Attribut, label: "pointer-events", detail: "Pointer events", insertText: "pointer-events=\"visible\"", documentation: "Enable touch events to the element.\n\n You can attach a handler to the `mouseup`, `mousedown` and `mousemove` events." },
 
     //Line
     { type: FitbitSvgType.Element, label: "line", detail: "Lines", documentation: "The `<line>` element draws a line between two pairs of coordinates." },
@@ -106,7 +108,9 @@ export const fitbitDefinitions: IFitbitDefinition[] = [
     // Template Symbols
     { type: FitbitSvgType.Container, label: "symbol", detail: "Template symbol", insertText: "id=\"${1}\"", documentation: "By defining an element as a `<symbol>`, developers can reuse that same element multiple times without having to duplicate the same markup. The `<set>` element can be used to modify attributes of each instance of the `<symbol>`." },
     { type: FitbitSvgType.Element, label: "use", detail: "Use a symbol", insertText: "href=\"#${1}\"", documentation: "Allow to use a `<symbol>`." },
-    { type: FitbitSvgType.Element, label: "set", detail: "Set a symbol element attribut", insertText: "href=\"${1}\" attributeName=\"${2}\" to=\"${3}\"", documentation: "The `<set>` element can be used to modify attributes of each instance of the `<symbol>`." },
+    { type: FitbitSvgType.Element, label: "set", detail: "Set a symbol element attribut", insertText: "href=\"${1}\" attributeName=\"${2|x,y,height,width,href,text-buffer,fill,opacity,cx,cy,r|}\" to=\"${3}\"", documentation: "The `<set>` element can be used to modify attributes of each instance of the `<symbol>`." },
+    { type: FitbitSvgType.Element, label: "attributeName", detail: "Attribute name to set", insertText: "attributeName=\"${1|x,y,height,width,href,text-buffer,fill,opacity,cx,cy,r|}\"", documentation: "Attribut to set to `<symbol>` or `<animation>`." },
+    { type: FitbitSvgType.Element, label: "to", detail: "To", documentation: "Value to set on the child of a `<symbol>` element or an `<animation>`." },
 
     // Link
     { type: FitbitSvgType.Element, label: "link", detail: "Link file", documentation: "Add a link to a file to use." },
