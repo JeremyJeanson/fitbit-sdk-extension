@@ -48,7 +48,7 @@ export const fitbitDefinitions: IFitbitDefinition[] = [
     { type: FitbitSvgType.Attribut, label: "r", detail: "Radius", documentation: "Radius of the circle." },
 
     // Images
-    { type: FitbitSvgType.Element, label: "Image", detail: "Image", documentation: "You can display images in your application in either PNG or JPEG formats. PNG format is preferable as it is compiled into a hardware accelerated TXI format during compilation. JPEG files are smaller, but take longer to render. Note that Progressive JPEG files are not supported." },
+    { type: FitbitSvgType.Element, label: "image", detail: "Image", documentation: "You can display images in your application in either PNG or JPEG formats. PNG format is preferable as it is compiled into a hardware accelerated TXI format during compilation. JPEG files are smaller, but take longer to render. Note that Progressive JPEG files are not supported." },
     { type: FitbitSvgType.Attribut, label: "href", detail: "Image href", documentation: "Relative path to the element to use." },
 
     // Text
