@@ -279,11 +279,9 @@ export function onCompletionResolve(e: CompletionItem): CompletionItem {
     if (definition == undefined) return e;
     // Add more data from the definition
     e.detail = definition.detail;
-    if (definition.documentation) {
-        e.documentation = {
-            kind: MarkupKind.Markdown,
-            value: definition.documentation
-        };
-    }
+    e.documentation = {
+        kind: MarkupKind.Markdown,
+        value: definition.documentation
+    };
     return e;
 }

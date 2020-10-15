@@ -10,22 +10,23 @@ export interface IFitbitDefinition {
     label: string;
     insertText?: string;
     detail: string;
-    documentation?: string;
+    documentation: string;
 }
 
 export const fitbitDefinitions: IFitbitDefinition[] = [
-    // Base container
+    // Base
     { type: FitbitSvgType.Container, label: "svg", detail: "SVG Container", documentation: "This element is a container for all elements." },
 
     // Base attributs
-    { type: FitbitSvgType.Attribut, label: "id", detail: "Id" },
-    { type: FitbitSvgType.Attribut, label: "x", detail: "x coordinate" },
-    { type: FitbitSvgType.Attribut, label: "y", detail: "y coordinate" },
-    { type: FitbitSvgType.Attribut, label: "height", detail: "Height" },
-    { type: FitbitSvgType.Attribut, label: "widht", detail: "Width" },
+    { type: FitbitSvgType.Attribut, label: "id", detail: "Id", documentation: "Id to get the element from JavasScript or TypeScript." },
+    { type: FitbitSvgType.Attribut, label: "x", detail: "x coordinate", documentation: "Horizontal position of the element." },
+    { type: FitbitSvgType.Attribut, label: "y", detail: "y coordinate", documentation: "Vertisal position of the element." },
+    { type: FitbitSvgType.Attribut, label: "height", detail: "Height", documentation: "Height of the element." },
+    { type: FitbitSvgType.Attribut, label: "widht", detail: "Width", documentation: "Width of the element" },
+    { type: FitbitSvgType.Attribut, label: "class", detail: "CSS", documentation: "Classes to apply to the element." },
 
     // Common attributs
-    { type: FitbitSvgType.Attribut, label: "fill", detail: "Fill color" },
+    { type: FitbitSvgType.Attribut, label: "fill", detail: "Fill color", documentation: "Color to fill the element or inner elements." },
     { type: FitbitSvgType.Attribut, label: "opacity", detail: "Opacity", documentation: "Specifies the opacity of the element (between 0 and 1)." },
     { type: FitbitSvgType.Attribut, label: "visibility", detail: "Visibility", insertText: "visibility=\"${1|visible,hidden|}\"", documentation: "Specifies if the line should be `visible` or `hidden`." },
     { type: FitbitSvgType.Attribut, label: "display", detail: "Display", insertText: "display=\"${1|none,inline,inherit|}\"", documentation: "none, inline or inherit." },
@@ -46,7 +47,7 @@ export const fitbitDefinitions: IFitbitDefinition[] = [
 
     // Images
     { type: FitbitSvgType.Element, label: "Image", detail: "Image", documentation: "You can display images in your application in either PNG or JPEG formats. PNG format is preferable as it is compiled into a hardware accelerated TXI format during compilation. JPEG files are smaller, but take longer to render. Note that Progressive JPEG files are not supported." },
-    { type: FitbitSvgType.Attribut, label: "href", detail: "Image href" },
+    { type: FitbitSvgType.Attribut, label: "href", detail: "Image href", documentation: "Relative path to the element to use." },
 
     // Text
     { type: FitbitSvgType.Element, label: "text", detail: "Text", documentation: "A single line of text." },
@@ -107,6 +108,9 @@ export const fitbitDefinitions: IFitbitDefinition[] = [
     { type: FitbitSvgType.Element, label: "use", detail: "Use a symbol", insertText: "href=\"#${1}\"", documentation: "Allow to use a `<symbol>`." },
     { type: FitbitSvgType.Element, label: "set", detail: "Set a symbol element attribut", insertText: "href=\"${1}\" attributeName=\"${2}\" to=\"${3}\"", documentation: "The `<set>` element can be used to modify attributes of each instance of the `<symbol>`." },
 
+    // Link
+    { type: FitbitSvgType.Element, label: "link", detail: "Link file", documentation: "Add a link to a file to use." },
+    { type: FitbitSvgType.Attribut, label: "rel", detail: "Relation type", insertText: "rel=\"${1|stylesheet,import|}\"", documentation: "Add a link to a file to use." },
 
     /*
         { type: FitbitSvgType.Attribut, label: "", detail: "", documentation: "" },
