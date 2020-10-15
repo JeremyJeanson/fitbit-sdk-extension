@@ -223,7 +223,11 @@ function getCompletionItem(definitionsFiltered: IFitbitDefinition[], currentWord
         result.push({
             data: fitbitDefinitions.indexOf(definitionsFiltered[i]),
             label: definitionsFiltered[i].label,
-            insertText: `${definitionsFiltered[i].label}=\"$1\"`,
+            insertText:
+                // Check if a snippet is avaiable
+                definitionsFiltered[i].insertText
+                    ? definitionsFiltered[i].insertText
+                    : `${definitionsFiltered[i].label}=\"$1\"`,
             insertTextFormat: InsertTextFormat.Snippet,
             kind: CompletionItemKind.Property,
         })
