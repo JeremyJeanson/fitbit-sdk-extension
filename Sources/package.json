@@ -88,7 +88,7 @@
     },
     "scripts": {
         "pack": "vsce package",
-        "deploy": "vsce publish",
+        "publish": "vsce publish",
         "vscode:prepublish": "cd ./client && npm run vscode:prepublish && cd ../server && npm run vscode:prepublish",
         "compile": "tsc -b",
         "watch": "tsc -b -w",

@@ -16,25 +16,19 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       - name: Npm install
+        working-directory: ./Sources
         run: |
           npm install
           npm run postinstall
-        working-directory: ./Sources
-      # - name: Compile
-      #   run: npm run compile
-      #   working-directory: ./Sources
+      
+      # Pack the vsix
       - name: Pack
         if: ${{ success() }}
-        run: npm run pack
         working-directory: ./Sources
+        run: npm run pack
       - name: Upload artefact
         if: ${{ success() }}
         uses: actions/upload-artifact@v2
         with:
-          name: vsix
+          name: fitbit-sdk-extenson
           path: ./Sources/*.vsix
-      # # Publish to the marketplace
-      # - name: Publish
-      #   run: npm run deploy
-      #   env:
-      #     VSCE_PAT: ${{ secrets.VSCE_PAT }}
