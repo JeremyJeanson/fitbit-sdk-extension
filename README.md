@@ -1,6 +1,21 @@
-# Introduction
+# Fitbit SDK Extension for vscode
+
+<div style="display: flex;">
+<div>
+
+[![Fitbit SDK Extension for vscode](Sources/images/icon.png)](https://marketplace.visualstudio.com/items?itemName=JeremyJeanson.fitbit-sdk-extension)
+
+</div>
+
+<div>
 
 This extension was built to help developers to use the Fitbit SDK when they use Visual Studio Code.
+
+It coudl be installed form [the marketplace](https://marketplace.visualstudio.com/items?itemName=JeremyJeanson.fitbit-sdk-extension).
+
+</div>
+</div>
+
 
 # Current status
 
