@@ -24,6 +24,9 @@ This extension is under active development. Features will be added over time.
 
 # Exemples
 
+Code completion.
+![Make the edition of SVG easier](Assets/demos/code-completion.gif)
+
 Snippets to define symbols and animations.
 ![An easy way create a custom components](Assets/demos/symbols.gif)
 

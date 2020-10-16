@@ -7,6 +7,11 @@
     - Format (to add indentation).
     - Validation.
 
+## Version 0.2.1 - 2020-10-16 
+### Added
+- Code completion demo.
+- Full changelog
+
 ## Version 0.2.0 - 2020-10-16 
 ### Added
 - SVG Language completion (All SVG elements and attributs used by the Fitbit SDK, to avoid errors).

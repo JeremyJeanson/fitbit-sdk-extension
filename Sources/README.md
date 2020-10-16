@@ -24,6 +24,9 @@ This extension is under active development. Features will be added over time.
 
 # Exemples
 
+Code completion.
+![Make the edition of SVG easier](https://raw.githubusercontent.com/JeremyJeanson/fitbit-sdk-extension/main/Assets/demos/code-completion.gif)
+
 Snippets to define symbols and animations.
 ![An easy way create a custom components](https://raw.githubusercontent.com/JeremyJeanson/fitbit-sdk-extension/main/Assets/demos/symbols.gif)
 
