@@ -7,6 +7,12 @@
     - Format (to add indentation).
     - Validation.
 
+## Version 0.2.2 - 2020-10-16 
+### Added
+- gradientRect element.
+### Fixed
+- "from", "attributeName", "set" are inserted as Atttributs.
+
 ## Version 0.2.1 - 2020-10-16 
 ### Added
 - Code completion demo.
