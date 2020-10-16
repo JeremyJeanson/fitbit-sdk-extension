@@ -89,7 +89,7 @@
     "scripts": {
         "pack": "vsce package",
         "deploy": "vsce publish",
-        "vscode:prepublish": "npm run compile",
+        "vscode:prepublish": "cd ./client && npm run vscode:prepublish && cd ../server && npm run vscode:prepublish",
         "compile": "tsc -b",
         "watch": "tsc -b -w",
         "postinstall": "cd client && npm install && cd ../server && npm install && cd .."
