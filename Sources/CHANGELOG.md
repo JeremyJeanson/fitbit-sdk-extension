@@ -7,9 +7,13 @@
     - Format (to add indentation).
     - Validation.
 
+## Version 0.2.3 - 2020-10-16 
+### Added
+- Show only possible attributes when you are editing an SVG element.
+
 ## Version 0.2.2 - 2020-10-16 
 ### Added
-- gradientRect element.
+- gradientArc element.
 ### Fixed
 - "from", "attributeName", "set" are inserted as Atttributs.
 

@@ -1,6 +1,6 @@
 import { CompletionItem, CompletionItemKind, InsertTextFormat, MarkupKind, Range, TextDocumentPositionParams } from "vscode-languageserver";
 import { TextDocument } from "vscode-languageserver-textdocument";
-import { fitbitDefinitions, IFitbitAttributDefinition, IFitbitDefinition, IFitbitElementDefinition } from "./fitbit-svg-definitions";
+import { FitbitAttributFamily, fitbitDefinitions, IFitbitAttributDefinition, IFitbitElementDefinition } from "./fitbit-svg-definitions";
 
 interface IAnalyseResult {
     /**
@@ -42,15 +42,17 @@ export function oncompletion(document: TextDocument, params: TextDocumentPositio
 
     // Parent markup found -> return arguments
     if (analyse.markupName !== undefined) {
-        // No word -> return all
-        if (analyse.currentWord === undefined) {
-            return getCompletionItemsForAnAttribut(
-                fitbitDefinitions.attributs);
-        }
-        const word = analyse.currentWord;
-        return getCompletionItemsForAnAttribut(
-            fitbitDefinitions.attributs.filter(c => c.label.startsWith(word))
-        );
+        const attributs = filterAttributes(analyse.markupName, analyse.currentWord);
+        return getCompletionItemsForAnAttribut(attributs);
+        // // No word -> return all
+        // if (analyse.currentWord === undefined) {
+        //     return getCompletionItemsForAnAttribut(
+        //         fitbitDefinitions.attributs);
+        // }
+        // const word = analyse.currentWord;
+        // return getCompletionItemsForAnAttribut(
+        //     fitbitDefinitions.attributs.filter(c => c.label.toLowerCase().startsWith(word))
+        // );
     }
 
     // No parent -> return all exepted arguments
@@ -62,8 +64,28 @@ export function oncompletion(document: TextDocument, params: TextDocumentPositio
     }
     const word = analyse.currentWord;
     return getCompletionItemsForAnElement(
-        fitbitDefinitions.elements.filter(c => c.label.startsWith(word)),
+        fitbitDefinitions.elements.filter(c => c.label.toLowerCase().startsWith(word)),
         analyse.currentWordHasMark);
+}
+
+/**
+ * Filter attributes for an element
+ * @param elementName 
+ * @param currentWord 
+ */
+function filterAttributes(elementName: string, currentWord: string | undefined): IFitbitAttributDefinition[] {
+    // Get element
+    const element = fitbitDefinitions.elements.find(c => c.label.toLowerCase() === elementName);
+    if (element === undefined || element.attributs.length === 0) return [];
+
+    // Set the types to filter
+    const types = element.attributs;
+
+    return currentWord === undefined
+        // Filter attributs on types
+        ? fitbitDefinitions.attributs.filter(c => types.findIndex(cc => cc == c.type) >= 0)
+        // Filter attributs on types and word
+        : fitbitDefinitions.attributs.filter(c => types.findIndex(cc => cc == c.type) >= 0 && c.label.toLowerCase().startsWith(currentWord));
 }
 
 /**
@@ -250,6 +272,7 @@ function getCompletionItemForAnElement(definition: IFitbitElementDefinition, cur
  * @param definitionsFiltered 
  */
 function getCompletionItemsForAnAttribut(definitionsFiltered: IFitbitAttributDefinition[]): CompletionItem[] {
+    if (definitionsFiltered.length === 0) return [];
     const result: CompletionItem[] = [];
     for (let i = 0; i < definitionsFiltered.length; i++) {
         result.push(getCompletionItemForAnAttribut(definitionsFiltered[i]));
