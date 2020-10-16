@@ -1,6 +1,6 @@
 import { CompletionItem, CompletionItemKind, InsertTextFormat, MarkupKind, Range, TextDocumentPositionParams } from "vscode-languageserver";
 import { TextDocument } from "vscode-languageserver-textdocument";
-import { fitbitDefinitions, IFitbitDefinition } from "./fitbit-svg-definitions";
+import { fitbitDefinitions, IFitbitAttributDefinition, IFitbitDefinition, IFitbitElementDefinition } from "./fitbit-svg-definitions";
 
 interface IAnalyseResult {
     /**
@@ -202,7 +202,7 @@ function sanitateWord(word: string): string {
  * Translate definitions to completion items
  * @param definitionsFiltered 
  */
-function getCompletionItemsForAnElement(definitionsFiltered: IFitbitDefinition[], currentWordHasMark: boolean): CompletionItem[] {
+function getCompletionItemsForAnElement(definitionsFiltered: IFitbitElementDefinition[], currentWordHasMark: boolean): CompletionItem[] {
     const result: CompletionItem[] = [];
     for (let i = 0; i < definitionsFiltered.length; i++) {
         result.push(getCompletionItemForAnElement(definitionsFiltered[i], currentWordHasMark));
@@ -215,7 +215,7 @@ function getCompletionItemsForAnElement(definitionsFiltered: IFitbitDefinition[]
  * @param definition 
  * @param currentWordHasMark 
  */
-function getCompletionItemForAnElement(definition: IFitbitDefinition, currentWordHasMark: boolean): CompletionItem {
+function getCompletionItemForAnElement(definition: IFitbitElementDefinition, currentWordHasMark: boolean): CompletionItem {
     // Index of the data
     const data = fitbitDefinitions.elements.indexOf(definition);
     let insertText: string;
@@ -249,7 +249,7 @@ function getCompletionItemForAnElement(definition: IFitbitDefinition, currentWor
  * Translate definitions to completion items
  * @param definitionsFiltered 
  */
-function getCompletionItemsForAnAttribut(definitionsFiltered: IFitbitDefinition[]): CompletionItem[] {
+function getCompletionItemsForAnAttribut(definitionsFiltered: IFitbitAttributDefinition[]): CompletionItem[] {
     const result: CompletionItem[] = [];
     for (let i = 0; i < definitionsFiltered.length; i++) {
         result.push(getCompletionItemForAnAttribut(definitionsFiltered[i]));
@@ -262,7 +262,7 @@ function getCompletionItemsForAnAttribut(definitionsFiltered: IFitbitDefinition[
  * @param definition 
  * @param currentWordHasMark 
  */
-function getCompletionItemForAnAttribut(definition: IFitbitDefinition): CompletionItem {
+function getCompletionItemForAnAttribut(definition: IFitbitAttributDefinition): CompletionItem {
     // Index of the data
     const data = fitbitDefinitions.attributs.indexOf(definition);
 

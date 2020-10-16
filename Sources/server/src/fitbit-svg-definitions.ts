@@ -1,16 +1,37 @@
+/**
+ * Bas of all definitions
+ */
 export interface IFitbitDefinition {
-    container?: boolean;
     label: string;
     insertText?: string;
     detail: string;
     documentation: string;
 }
 
-export interface FitbitDefinitions {
-    elements: IFitbitDefinition[];
-    attributs: IFitbitDefinition[];
+/**
+ * Define an Element 
+ */
+export interface IFitbitElementDefinition extends IFitbitDefinition {
+    container?: boolean;
 }
 
+/**
+ * Define an Attribut
+ */
+export interface IFitbitAttributDefinition extends IFitbitDefinition {
+}
+
+/**
+ * Define the definition container
+ */
+export interface FitbitDefinitions {
+    elements: IFitbitElementDefinition[];
+    attributs: IFitbitAttributDefinition[];
+}
+
+/**
+ * Contain the definnition off all fitbit element use in SVG files
+ */
 export const fitbitDefinitions: FitbitDefinitions = {
     elements: [
         // Base
