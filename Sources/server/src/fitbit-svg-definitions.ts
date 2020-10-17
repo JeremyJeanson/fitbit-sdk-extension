@@ -182,7 +182,7 @@ export const fitbitDefinitions: FitbitDefinitions = {
         { type: FitbitAttributFamily.Box, label: "x", detail: "x coordinate", documentation: "Horizontal position of the element." },
         { type: FitbitAttributFamily.Box, label: "y", detail: "y coordinate", documentation: "Vertisal position of the element." },
         { type: FitbitAttributFamily.Box, label: "height", detail: "Height", documentation: "Height of the element." },
-        { type: FitbitAttributFamily.Box, label: "widht", detail: "Width", documentation: "Width of the element" },
+        { type: FitbitAttributFamily.Box, label: "width", detail: "Width", documentation: "Width of the element" },
 
         // Visual
         { type: FitbitAttributFamily.Visual, label: "class", detail: "CSS", documentation: "Classes to apply to the element." },
