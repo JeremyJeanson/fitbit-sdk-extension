@@ -7,6 +7,10 @@
     - Format (to add indentation).
     - Validation.
 
+## Version 0.2.4 - 2020-10-17 
+### Fixed
+- Typo error on "width"
+
 ## Version 0.2.3 - 2020-10-16 
 ### Added
 - Show only possible attributes when you are editing an SVG element.
