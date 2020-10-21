@@ -353,3 +353,4 @@ MigrationBackup/
 *.vsix
 out/
 **/*.tsbuildinfo
+.vscode-test

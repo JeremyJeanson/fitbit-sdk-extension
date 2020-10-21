@@ -7,7 +7,7 @@ export let documentEol: string;
 export let platformEol: string;
 
 /**
- * Activates the vscode.lsp-sample extension
+ * Activates the extension
  */
 export async function activate(docUri: vscode.Uri) {
 	// The extensionId is `publisher.name` from package.json
@@ -29,6 +29,7 @@ async function sleep(ms: number) {
 export const getDocPath = (p: string) => {
 	return path.resolve(__dirname, '../../src/test/testFixture', p);
 };
+
 export const getDocUri = (p: string) => {
 	return vscode.Uri.file(getDocPath(p));
 };
