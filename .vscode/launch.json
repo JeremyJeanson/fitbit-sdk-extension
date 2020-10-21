@@ -27,6 +27,20 @@
                 "${workspaceRoot}/Sources/server/out/**/*.js"
             ]
         },
+        {
+            "name": "Language Server End to End Test",
+            "type": "extensionHost",
+            "request": "launch",
+            "runtimeExecutable": "${execPath}",
+            "args": [
+                "--extensionDevelopmentPath=${workspaceRoot}/Sources",
+                "--extensionTestsPath=${workspaceRoot}/Sources/client/out/test/index",
+                "${workspaceRoot}/Sources/client/src/test/testFixture"
+            ],
+            "outFiles": [
+                "${workspaceRoot}/Sources/client/out/test/**/*.js"
+            ]
+        }
     ],
     "compounds": [
         {
