@@ -47,7 +47,7 @@ connection.onCompletion(
         try {
             let uri = e.textDocument.uri;
             let document = documents.get(uri);
-            if (document === undefined) return [];
+            if (document === undefined) { return []; }
             return fitbitCompletion.oncompletion(document, e);
         }
         catch (ex) {

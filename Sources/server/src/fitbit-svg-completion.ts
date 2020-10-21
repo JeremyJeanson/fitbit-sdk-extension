@@ -38,7 +38,7 @@ export function oncompletion(document: TextDocument, params: TextDocumentPositio
     const analyse = analysePosition(document, params);
 
     // No data -> return all
-    if (analyse === undefined) return getCompletionItemsForAnElement(fitbitDefinitions.elements, false);
+    if (analyse === undefined) { return getCompletionItemsForAnElement(fitbitDefinitions.elements, false); }
 
     // Parent markup found -> return arguments
     if (analyse.markupName !== undefined) {
@@ -76,16 +76,16 @@ export function oncompletion(document: TextDocument, params: TextDocumentPositio
 function filterAttributes(elementName: string, currentWord: string | undefined): IFitbitAttributDefinition[] {
     // Get element
     const element = fitbitDefinitions.elements.find(c => c.label.toLowerCase() === elementName);
-    if (element === undefined || element.attributs.length === 0) return [];
+    if (element === undefined || element.attributs.length === 0) { return []; }
 
     // Set the types to filter
     const types = element.attributs;
 
     return currentWord === undefined
         // Filter attributs on types
-        ? fitbitDefinitions.attributs.filter(c => types.findIndex(cc => cc == c.type) >= 0)
+        ? fitbitDefinitions.attributs.filter(c => types.findIndex(cc => cc === c.type) >= 0)
         // Filter attributs on types and word
-        : fitbitDefinitions.attributs.filter(c => types.findIndex(cc => cc == c.type) >= 0 && c.label.toLowerCase().startsWith(currentWord));
+        : fitbitDefinitions.attributs.filter(c => types.findIndex(cc => cc === c.type) >= 0 && c.label.toLowerCase().startsWith(currentWord));
 }
 
 /**
@@ -93,7 +93,7 @@ function filterAttributes(elementName: string, currentWord: string | undefined):
  * @param params 
  */
 function analysePosition(document: TextDocument, params: TextDocumentPositionParams): IAnalyseResult | undefined {
-    if (document === undefined) return undefined;
+    if (document === undefined) { return undefined; }
     let currentWord: string | undefined;
     // Alalyse from the current line (to the firt if requested)
     for (let i = params.position.line; i >= 0; i--) {
@@ -109,10 +109,10 @@ function analysePosition(document: TextDocument, params: TextDocumentPositionPar
             if (analyse.needMoreAnalyse) {
                 // Memorise the nanalyse onn ly if it the current line
                 // Else we don't need this anlayse, it has noting to keep
-                if (isCurrentline) currentWord = analyse.currentWord;
+                if (isCurrentline) { currentWord = analyse.currentWord; }
             } else {
                 // Test if it is the current line
-                if (isCurrentline) return analyse;
+                if (isCurrentline) { return analyse; }
                 // Test if the current line has data
                 if (currentWord !== undefined) {
                     // Combine data with the firt analyse if it exists
@@ -129,7 +129,7 @@ function analysePosition(document: TextDocument, params: TextDocumentPositionPar
 
 function analyseLine(line: string): IAnalyseResult | undefined {
     // check the line lenght
-    if (line.length === 0) return undefined;
+    if (line.length === 0) { return undefined; }
     // Frist word found on the line
     let firstWord: string | undefined;
     // A first space was found (don't try to find the current word)
@@ -145,7 +145,7 @@ function analyseLine(line: string): IAnalyseResult | undefined {
                     // Try to get a word
                     const word = getFirstWord(line, i);
                     // Set the first word if possible
-                    if (word !== undefined) firstWord = word;
+                    if (word !== undefined) { firstWord = word; }
                 }
                 break;
             }
@@ -193,15 +193,15 @@ function analyseLine(line: string): IAnalyseResult | undefined {
  */
 function getFirstWord(line: string, index: number): string | undefined {
     // Check the index
-    if (line.length <= index) return undefined;
+    if (line.length <= index) { return undefined; }
     // Get sub line from the index
     const subline = line.substring(index).trim();
-    if (subline.length === 0) return undefined;
+    if (subline.length === 0) { return undefined; }
 
     // Test if it contain spaces
     const spaceIndex = subline.indexOf(" ");
     // No space
-    if (spaceIndex < 0) return sanitateWord(subline);
+    if (spaceIndex < 0) { return sanitateWord(subline); }
 
     // Search the first word
     const words = subline.split(" ");
@@ -215,7 +215,7 @@ function getFirstWord(line: string, index: number): string | undefined {
  */
 function sanitateWord(word: string): string {
     for (let i = sanitateChars.length - 1; i >= 0; i--) {
-        if (word.indexOf(sanitateChars[i]) >= 0) word = word.replace(sanitateChars[i], "");
+        if (word.indexOf(sanitateChars[i]) >= 0) { word = word.replace(sanitateChars[i], ""); }
     }
     return word.toLowerCase();
 }
@@ -257,7 +257,7 @@ function getCompletionItemForAnElement(definition: IFitbitElementDefinition, cur
     }
 
     // Add "<" if it is missing
-    if (!currentWordHasMark) insertText = "<" + insertText;
+    if (!currentWordHasMark) { insertText = "<" + insertText; }
     return {
         data: data,
         label: definition.label,
@@ -272,7 +272,7 @@ function getCompletionItemForAnElement(definition: IFitbitElementDefinition, cur
  * @param definitionsFiltered 
  */
 function getCompletionItemsForAnAttribut(definitionsFiltered: IFitbitAttributDefinition[]): CompletionItem[] {
-    if (definitionsFiltered.length === 0) return [];
+    if (definitionsFiltered.length === 0) { return []; }
     const result: CompletionItem[] = [];
     for (let i = 0; i < definitionsFiltered.length; i++) {
         result.push(getCompletionItemForAnAttribut(definitionsFiltered[i]));
@@ -308,13 +308,13 @@ function getCompletionItemForAnAttribut(definition: IFitbitAttributDefinition): 
  */
 export function onCompletionResolve(e: CompletionItem): CompletionItem {
     // Check the id
-    if (e.data === undefined) return e;
+    if (e.data === undefined) { return e; }
     // Try to get more data from definitions
     const definition = e.kind === CompletionItemKind.Property
         ? fitbitDefinitions.attributs[e.data]
         : fitbitDefinitions.elements[e.data];
     // Check the definition
-    if (definition == undefined) return e;
+    if (definition === undefined) { return e; }
     // Add more data from the definition
     e.detail = definition.detail;
     e.documentation = {
