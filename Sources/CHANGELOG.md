@@ -7,9 +7,16 @@
     - Format (to add indentation).
     - Validation.
 
+## Version 0.2.5 - 2020-10-22
+### Added
+- Completion to add comment.
+### Changed
+- Code quality.
+- Unit tests.
+
 ## Version 0.2.4 - 2020-10-17 
 ### Fixed
-- Typo error on "width"
+- Typo error on "width".
 
 ## Version 0.2.3 - 2020-10-16 
 ### Added
