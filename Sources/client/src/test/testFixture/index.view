@@ -1,3 +1,5 @@
 <svg>
-    <image />
+    <image width="100"/>
+    
+    <rect id="" height="" width="" />
 </svg>

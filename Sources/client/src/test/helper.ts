@@ -9,8 +9,9 @@ export let platformEol: string;
 /**
  * Activates the extension
  */
-export async function activate(docUri: vscode.Uri) {
+export async function activate(docUri: vscode.Uri): Promise<void> {
 	// The extensionId is `publisher.name` from package.json
+	// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 	const ext = vscode.extensions.getExtension('JeremyJeanson.fitbit-sdk-extension')!;
 	await ext.activate();
 	try {
@@ -22,15 +23,15 @@ export async function activate(docUri: vscode.Uri) {
 	}
 }
 
-async function sleep(ms: number) {
+async function sleep(ms: number): Promise<unknown> {
 	return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-export const getDocPath = (p: string) => {
+export const getDocPath = (p: string): string => {
 	return path.resolve(__dirname, '../../src/test/testFixture', p);
 };
 
-export const getDocUri = (p: string) => {
+export const getDocUri = (p: string): vscode.Uri => {
 	return vscode.Uri.file(getDocPath(p));
 };
 
