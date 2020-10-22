@@ -1,6 +1,6 @@
 import { CompletionItem, CompletionItemKind, InsertTextFormat, MarkupKind, Range, TextDocumentPositionParams } from "vscode-languageserver";
 import { TextDocument } from "vscode-languageserver-textdocument";
-import { fitbitDefinitions, IFitbitAttributDefinition, IFitbitElementDefinition } from "./fitbit-svg-definitions";
+import { FitbitElementType, fitbitDefinitions, IFitbitAttributDefinition, IFitbitElementDefinition } from "./fitbit-svg-definitions";
 
 interface IAnalyseResult {
     /**
@@ -44,15 +44,6 @@ export function oncompletion(document: TextDocument, params: TextDocumentPositio
     if (analyse.markupName !== undefined) {
         const attributs = filterAttributes(analyse.markupName, analyse.currentWord);
         return getCompletionItemsForAnAttribut(attributs);
-        // // No word -> return all
-        // if (analyse.currentWord === undefined) {
-        //     return getCompletionItemsForAnAttribut(
-        //         fitbitDefinitions.attributs);
-        // }
-        // const word = analyse.currentWord;
-        // return getCompletionItemsForAnAttribut(
-        //     fitbitDefinitions.attributs.filter(c => c.label.toLowerCase().startsWith(word))
-        // );
     }
 
     // No parent -> return all exepted arguments
@@ -243,11 +234,18 @@ function getCompletionItemForAnElement(definition: IFitbitElementDefinition, cur
     let insertText: string;
 
     // Is container?
-    if (definition.container) {
-        // Format the text to insert
-        insertText = definition.insertText
-            ? `${definition.label} ${definition.insertText}>\n\t$0\n</${definition.label}>`
-            : `${definition.label}>\n\t$0\n</${definition.label}>`;
+    if (definition.special) {
+        if (definition.special.valueOf() === FitbitElementType.Container) {
+            // Format the text to insert
+            insertText = definition.insertText
+                ? `${definition.label} ${definition.insertText}>\n\t$0\n</${definition.label}>`
+                : `${definition.label}>\n\t$0\n</${definition.label}>`;
+        } else {
+            // Format the text to insert
+            insertText = definition.insertText
+                ? definition.insertText.valueOf()
+                : definition.label;
+        }
     }
     else {
         // Format the text to insert
