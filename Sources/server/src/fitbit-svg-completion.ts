@@ -1,6 +1,6 @@
 import { CompletionItem, CompletionItemKind, InsertTextFormat, MarkupKind, Range, TextDocumentPositionParams } from "vscode-languageserver";
 import { TextDocument } from "vscode-languageserver-textdocument";
-import { FitbitAttributFamily, fitbitDefinitions, IFitbitAttributDefinition, IFitbitElementDefinition } from "./fitbit-svg-definitions";
+import { fitbitDefinitions, IFitbitAttributDefinition, IFitbitElementDefinition } from "./fitbit-svg-definitions";
 
 interface IAnalyseResult {
     /**
@@ -297,7 +297,7 @@ function getCompletionItemForAnAttribut(definition: IFitbitAttributDefinition): 
             // Check if a snippet is avaiable
             definition.insertText
                 ? definition.insertText
-                : `${definition.label}=\"$1\"`,
+                : `${definition.label}="$1"`,
         insertTextFormat: InsertTextFormat.Snippet,
         kind: CompletionItemKind.Property,
     };

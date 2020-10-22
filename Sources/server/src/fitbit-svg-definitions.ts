@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/naming-convention */
-import { type } from "os";
+/* eslint-disable @typescript-eslint/no-namespace */
 
 /**
  * Bas of all definitions
@@ -11,6 +10,7 @@ export interface IFitbitDefinition {
     documentation: string;
 }
 
+/* eslint-disable @typescript-eslint/naming-convention */
 export namespace FitbitAttributFamily {
     export const Id = 0;
     export const Box = 1;

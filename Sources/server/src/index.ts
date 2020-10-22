@@ -2,12 +2,10 @@ import {
     createConnection,
     TextDocuments,
     ProposedFeatures,
-    InitializeParams,
     CompletionItem,
     TextDocumentPositionParams,
     TextDocumentSyncKind,
-    InitializeResult,
-    HoverParams
+    InitializeResult
 } from "vscode-languageserver";
 
 import {
@@ -18,12 +16,12 @@ import * as fitbitCompletion from "./fitbit-svg-completion";
 
 // Create a connection for the server, using Node"s IPC as a transport.
 // Also include all preview / proposed LSP features.
-let connection = createConnection(ProposedFeatures.all);
+const connection = createConnection(ProposedFeatures.all);
 
 // Create a simple text document manager. 
-let documents: TextDocuments<TextDocument> = new TextDocuments(TextDocument);
+const documents: TextDocuments<TextDocument> = new TextDocuments(TextDocument);
 
-connection.onInitialize((params: InitializeParams) => {
+connection.onInitialize(() => {
     const result: InitializeResult = {
         capabilities: {
             textDocumentSync: TextDocumentSyncKind.Incremental,
@@ -37,7 +35,7 @@ connection.onInitialize((params: InitializeParams) => {
     return result;
 });
 
-documents.onDidChangeContent(change => {
+documents.onDidChangeContent(() => {
     //fitbitCompletion.setDocument(change.document);
 });
 
@@ -45,8 +43,8 @@ documents.onDidChangeContent(change => {
 connection.onCompletion(
     (e: TextDocumentPositionParams): CompletionItem[] => {
         try {
-            let uri = e.textDocument.uri;
-            let document = documents.get(uri);
+            const uri = e.textDocument.uri;
+            const document = documents.get(uri);
             if (document === undefined) { return []; }
             return fitbitCompletion.oncompletion(document, e);
         }
