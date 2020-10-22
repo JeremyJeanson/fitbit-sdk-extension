@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-namespace */
-
 /**
  * Bas of all definitions
  */
@@ -11,24 +9,23 @@ export interface IFitbitDefinition {
 }
 
 /* eslint-disable @typescript-eslint/naming-convention */
-export namespace FitbitAttributFamily {
-    export const Id = 0;
-    export const Box = 1;
-    export const Visual = 2;
-    export const Line = 3;
-    export const Circle = 4;
-    export const Href = 5;
-    export const Text = 6;
-    export const TextArea = 7;
-    export const Arc = 8;
-    export const Transform = 9;
-    export const Gradient = 10;
-    export const Set = 11;
-    export const Link = 12;
-    export const Animation = 13;
-    export const TransformationAnimation = 14;
+export const enum FitbitAttributFamily {
+    Id,
+    Box,
+    Visual,
+    Line,
+    Circle,
+    Href,
+    Text,
+    TextArea,
+    Arc,
+    Transform,
+    Gradient,
+    Set,
+    Link,
+    Animation,
+    TransformationAnimation
 }
-export type FitbitAttributFamily = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;
 
 /**
  * Define an Element 
