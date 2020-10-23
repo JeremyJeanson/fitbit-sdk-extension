@@ -233,25 +233,31 @@ function getCompletionItemForAnElement(definition: IFitbitElementDefinition, cur
     const data = fitbitDefinitions.elements.indexOf(definition);
     let insertText: string;
 
-    // Is container?
-    if (definition.special) {
-        if (definition.special.valueOf() === FitbitElementType.Container) {
+    switch (definition.special) {
+        // Container
+        case FitbitElementType.Container: {
             // Format the text to insert
             insertText = definition.insertText
                 ? `${definition.label} ${definition.insertText}>\n\t$0\n</${definition.label}>`
                 : `${definition.label}>\n\t$0\n</${definition.label}>`;
-        } else {
+
+            break;
+        }
+        // Text from insdert
+        case FitbitElementType.Misc: {
             // Format the text to insert
             insertText = definition.insertText
-                ? definition.insertText.valueOf()
+                ? definition.insertText
                 : definition.label;
+            break;
         }
-    }
-    else {
-        // Format the text to insert
-        insertText = definition.insertText
-            ? `${definition.label} ${definition.insertText}$0 />`
-            : `${definition.label}$0 />`;
+        // Simple Element
+        default: {
+            // Format the text to insert
+            insertText = definition.insertText
+                ? `${definition.label} ${definition.insertText}$0 />`
+                : `${definition.label}$0 />`;
+        }
     }
 
     // Add "<" if it is missing

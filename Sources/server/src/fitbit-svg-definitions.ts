@@ -43,8 +43,8 @@ export const enum FitbitElementType {
  * Define an Element 
  */
 export interface IFitbitElementDefinition extends IFitbitDefinition {
-    special?: FitbitElementType,
-    attributs: FitbitAttributType[]
+    special?: FitbitElementType;
+    attributs: FitbitAttributType[];
 }
 
 /**

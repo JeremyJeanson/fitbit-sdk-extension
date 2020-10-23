@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 import * as assert from 'assert';
 import { getDocUri, activate } from './helper';
+import { SnippetString } from 'vscode';
 
 suite('Should do completion', () => {
 	const emptyDoc = getDocUri('empty.view');
@@ -10,6 +11,7 @@ suite('Should do completion', () => {
 	test('Completes SVG Emtpy', async () => {
 		await testCompletion(emptyDoc, new vscode.Position(0, 0), {
 			items: [
+				{ label: '!--', kind: vscode.CompletionItemKind.Module },
 				{ label: 'animate', kind: vscode.CompletionItemKind.Module },
 				{ label: 'animateTransform', kind: vscode.CompletionItemKind.Module }
 			]
@@ -19,7 +21,7 @@ suite('Should do completion', () => {
 	test('Completes Widget Defs', async () => {
 		await testCompletion(widgetDoc, new vscode.Position(0, 2), {
 			items: [
-				{ label: 'section', kind: vscode.CompletionItemKind.Module },
+				{ label: 'section', kind: vscode.CompletionItemKind.Module, insertText: "section>\n\t$0\n</section>" },
 			]
 		});
 	});
@@ -27,12 +29,20 @@ suite('Should do completion', () => {
 	test('Completes Widget Defs', async () => {
 		await testCompletion(widgetDoc, new vscode.Position(0, 3), {
 			items: [
-				{ label: 'svg', kind: vscode.CompletionItemKind.Module },
+				{ label: 'svg', kind: vscode.CompletionItemKind.Module, insertText: "svg>\n\t$0\n</svg>" },
 			]
 		});
 	});
 
-	test('Completes Image', async () => {
+	test('Completes Image attributs', async () => {
+		await testCompletion(indexDoc, new vscode.Position(1, 8), {
+			items: [
+				{ label: 'image', kind: vscode.CompletionItemKind.Module, insertText: "image$0 />" },
+			]
+		});
+	});
+
+	test('Completes Image attributs', async () => {
 		await testCompletion(indexDoc, new vscode.Position(1, 11), {
 			items: [
 				{ label: 'class', kind: vscode.CompletionItemKind.Property },
@@ -72,5 +82,9 @@ async function testCompletion(
 		const actualItem = actualCompletionList.items[i];
 		assert.equal(actualItem.label, expectedItem.label);
 		assert.equal(actualItem.kind, expectedItem.kind);
+		if (expectedItem.insertText !== undefined) {
+			const insertText = (actualItem.insertText as SnippetString).value;
+			assert.strictEqual(insertText, expectedItem.insertText);
+		}
 	});
 }
