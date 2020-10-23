@@ -7,6 +7,10 @@
     - Format (to add indentation).
     - Validation.
 
+## Version 0.2.6 - 2020-10-23
+### Added
+- Documentation when mouse is hover SVG elements and attributs.
+
 ## Version 0.2.5 - 2020-10-22
 ### Added
 - Completion to add comment.

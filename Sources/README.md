@@ -19,6 +19,7 @@ This extension is under active development. Features will be added over time.
     - [x] Animations.
 - [ ] SVG Language.
     - [x] Completion (All SVG elements and attributs used by the Fitbit SDK, to avoid errors).
+    - [x] Documentation when mouse is hover elements.
     - [ ] Format.
     - [ ] Validation.
 
@@ -35,6 +36,9 @@ Snippets to use Fitbit SDK components.
 
 Snippets to include link to the Fitbit SDK definitions.
 ![An easy way create add link to Fitbit definion files](https://raw.githubusercontent.com/JeremyJeanson/fitbit-sdk-extension/main/Assets/demos/defs.gif)
+
+Display documentation when mouse is hover elements.
+![Documentation](https://raw.githubusercontent.com/JeremyJeanson/fitbit-sdk-extension/main/Assets/demos/documentation.png)
 
 # vscode-icons users
 If you are using the vscode-icons extension, you could change your settings to bind the SVG icon to the Fitbit DSK files.
