@@ -5,7 +5,9 @@ import {
     CompletionItem,
     TextDocumentPositionParams,
     TextDocumentSyncKind,
-    InitializeResult
+    InitializeResult,
+    HoverParams,
+    Hover
 } from "vscode-languageserver";
 
 import {
@@ -13,6 +15,7 @@ import {
 } from "vscode-languageserver-textdocument";
 
 import * as fitbitCompletion from "./fitbit-svg-completion";
+import * as fitbitHover from "./fitbit-svg-hover";
 
 // Create a connection for the server, using Node"s IPC as a transport.
 // Also include all preview / proposed LSP features.
@@ -28,7 +31,9 @@ connection.onInitialize(() => {
             // Tell the client that this server supports code completion.
             completionProvider: {
                 resolveProvider: true
-            }
+            },
+            // Tell the client that this server supports hover documentatin.
+            hoverProvider: true
         }
     };
 
@@ -43,9 +48,10 @@ documents.onDidChangeContent(() => {
 connection.onCompletion(
     (e: TextDocumentPositionParams): CompletionItem[] => {
         try {
-            const uri = e.textDocument.uri;
-            const document = documents.get(uri);
+            // Get the current document
+            const document = documents.get(e.textDocument.uri);
             if (document === undefined) { return []; }
+            // Get the completion response
             return fitbitCompletion.oncompletion(document, e);
         }
         catch (ex) {
@@ -68,6 +74,15 @@ connection.onCompletionResolve(
         }
     }
 );
+
+connection.onHover(
+    (e: HoverParams): Hover | undefined => {
+        // Get the current document
+        const document = documents.get(e.textDocument.uri);
+        if (document === undefined) { return undefined; }
+        // Get the hover reponse
+        return fitbitHover.onHover(document, e);
+    });
 
 // Make the text document manager listen on the connection
 // for open, change and close text document events
