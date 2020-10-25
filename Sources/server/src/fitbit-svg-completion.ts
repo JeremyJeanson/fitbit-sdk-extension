@@ -16,7 +16,7 @@ interface IAnalyseResult {
     /**
      * The current word is attached to an existing markup
      */
-    markupName?: string;
+    parent?: string;
 
     /**
      * The analyse is not finished. It need data from previous lines
@@ -41,8 +41,8 @@ export function oncompletion(document: TextDocument, params: TextDocumentPositio
     if (analyse === undefined) { return getCompletionItemsForAnElement(fitbitDefinitions.elements, false); }
 
     // Parent markup found -> return arguments
-    if (analyse.markupName !== undefined) {
-        const attributs = filterAttributes(analyse.markupName, analyse.currentWord);
+    if (analyse.parent !== undefined) {
+        const attributs = filterAttributes(analyse.parent, analyse.currentWord);
         return getCompletionItemsForAnAttribut(attributs);
     }
 
@@ -96,31 +96,39 @@ function analysePosition(document: TextDocument, params: TextDocumentPositionPar
                 i, isCurrentline ? params.position.character : Number.MAX_VALUE));
         // Analyse the line
         const analyse = analyseLine(line);
-        if (analyse !== undefined) {
-            if (analyse.needMoreAnalyse) {
-                // Memorise the nanalyse onn ly if it the current line
-                // Else we don't need this anlayse, it has noting to keep
-                if (isCurrentline) { currentWord = analyse.currentWord; }
-            } else {
-                // Test if it is the current line
-                if (isCurrentline) { return analyse; }
-                // Test if the current line has data
-                if (currentWord !== undefined) {
-                    // Combine data with the firt analyse if it exists
-                    analyse.currentWord = currentWord;
+
+        if (analyse.needMoreAnalyse) {
+            // Memorise the nanalyse onn ly if it the current line
+            // Else we don't need this anlayse, it has noting to keep
+            if (isCurrentline) { currentWord = analyse.currentWord; }
+        } else {
+            // Test if it is the current line
+            if (isCurrentline) { return analyse; }
+            else {
+                // Check if parent wqs found
+                if (analyse.currentWordHasMark) {
+                    // Get the parent
+                    if (analyse.currentWord !== undefined) { analyse.parent = analyse.currentWord; }
                     // The current word cannont have mark because this analyse come from a previous line
                     analyse.currentWordHasMark = false;
                 }
-                return analyse;
+                // Combine data with the firt analyse
+                analyse.currentWord = currentWord;
             }
+            return analyse;
         }
     }
     return undefined;
 }
 
-function analyseLine(line: string): IAnalyseResult | undefined {
+function analyseLine(line: string): IAnalyseResult {
     // check the line lenght
-    if (line.length === 0) { return undefined; }
+    if (line.length === 0) {
+        return {
+            currentWordHasMark: false,
+            needMoreAnalyse: true
+        };
+    }
     // Frist word found on the line
     let firstWord: string | undefined;
     // A first space was found (don't try to find the current word)
@@ -146,7 +154,7 @@ function analyseLine(line: string): IAnalyseResult | undefined {
                         return {
                             currentWordHasMark: false,
                             needMoreAnalyse: false,
-                            markupName: getFirstWord(line, i + 1)
+                            parent: getFirstWord(line, i + 1)
                         };
                     }
                     return {
@@ -158,7 +166,7 @@ function analyseLine(line: string): IAnalyseResult | undefined {
                 return {
                     currentWordHasMark: false,
                     currentWord: firstWord,
-                    markupName: getFirstWord(line, i + 1),
+                    parent: getFirstWord(line, i + 1),
                     needMoreAnalyse: false
                 };
             }
@@ -177,6 +185,12 @@ function analyseLine(line: string): IAnalyseResult | undefined {
             }
         }
     }
+    // Return only the current word
+    return {
+        currentWordHasMark: false,
+        needMoreAnalyse: true,
+        currentWord: firstWord
+    };
 }
 
 /**
