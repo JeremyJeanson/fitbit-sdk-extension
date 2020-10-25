@@ -7,6 +7,10 @@
     - Format (to add indentation).
     - Validation.
 
+## Version 0.2.7 - 2020-10-25
+### Added
+- SVG code completion when an element is splited on many lines.
+
 ## Version 0.2.6 - 2020-10-23
 ### Added
 - Documentation when mouse is hover SVG elements and attributs.
