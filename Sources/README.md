@@ -20,7 +20,7 @@ This extension is under active development. Features will be added over time.
 - [ ] SVG Language.
     - [x] Completion (All SVG elements and attributs used by the Fitbit SDK, to avoid errors).
     - [x] Documentation when mouse is hover elements.
-    - [ ] Format.
+    - [x] Format.
     - [ ] Validation.
 
 # Exemples

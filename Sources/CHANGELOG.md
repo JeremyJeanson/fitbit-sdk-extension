@@ -6,6 +6,9 @@
 - SVG Language.
     - Format (to add indentation).
     - Validation.
+## Version 0.2.8 - 2020-10-25
+### Added
+- SVG Formatter (use the HTML formatter provided by vscode).
 
 ## Version 0.2.7 - 2020-10-25
 ### Added
