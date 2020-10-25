@@ -16,6 +16,7 @@ import {
 
 import * as fitbitCompletion from "./fitbit-svg-completion";
 import * as fitbitHover from "./fitbit-svg-hover";
+import * as fitbitFormat from "./fitbit-svg-format";
 
 // Create a connection for the server, using Node"s IPC as a transport.
 // Also include all preview / proposed LSP features.
@@ -33,7 +34,10 @@ connection.onInitialize(() => {
                 resolveProvider: true
             },
             // Tell the client that this server supports hover documentatin.
-            hoverProvider: true
+            hoverProvider: true,
+            // Tell the clieny that this server supprots code formatting
+            documentFormattingProvider: true,
+            documentRangeFormattingProvider: true
         }
     };
 
@@ -44,7 +48,9 @@ documents.onDidChangeContent(() => {
     //fitbitCompletion.setDocument(change.document);
 });
 
-// This handler provides the initial list of the completion items.
+/**
+ * Code completion
+ */
 connection.onCompletion(
     (e: TextDocumentPositionParams): CompletionItem[] => {
         try {
@@ -61,8 +67,9 @@ connection.onCompletion(
     }
 );
 
-// This handler resolves additional information for the item selected in
-// the completion list.
+/**
+ * Code compltion documentation
+ */
 connection.onCompletionResolve(
     (e: CompletionItem): CompletionItem => {
         try {
@@ -75,6 +82,9 @@ connection.onCompletionResolve(
     }
 );
 
+/**
+ * Documentation whe hover
+ */
 connection.onHover(
     (e: HoverParams): Hover | undefined => {
         // Get the current document
@@ -83,6 +93,22 @@ connection.onHover(
         // Get the hover reponse
         return fitbitHover.onHover(document, e);
     });
+
+connection.onDocumentFormatting(e => {
+    // Get the current document
+    const document = documents.get(e.textDocument.uri);
+    if (document === undefined) { return undefined; }
+    // Format
+    return fitbitFormat.onDocumentFormatting(document, e);
+});
+
+connection.onDocumentRangeFormatting(e => {
+    // Get the current document
+    const document = documents.get(e.textDocument.uri);
+    if (document === undefined) { return undefined; }
+    // Format
+    return fitbitFormat.onDocumentRangeFormatting(document, e);
+});
 
 // Make the text document manager listen on the connection
 // for open, change and close text document events
