@@ -17,6 +17,7 @@ import {
 import * as fitbitCompletion from "./fitbit-svg-completion";
 import * as fitbitHover from "./fitbit-svg-hover";
 import * as fitbitFormat from "./fitbit-svg-format";
+import * as fitbitColors from "./fitbit-svg-colors";
 
 // Create a connection for the server, using Node"s IPC as a transport.
 // Also include all preview / proposed LSP features.
@@ -37,7 +38,9 @@ connection.onInitialize(() => {
             hoverProvider: true,
             // Tell the clieny that this server supprots code formatting
             documentFormattingProvider: true,
-            documentRangeFormattingProvider: true
+            documentRangeFormattingProvider: true,
+            // Tell the clieny that this server supprots colors edition
+            colorProvider: true
         }
     };
 
@@ -83,7 +86,7 @@ connection.onCompletionResolve(
 );
 
 /**
- * Documentation whe hover
+ * Documentation when hover
  */
 connection.onHover(
     (e: HoverParams): Hover | undefined => {
@@ -94,6 +97,9 @@ connection.onHover(
         return fitbitHover.onHover(document, e);
     });
 
+/**
+ * Format the document
+ */
 connection.onDocumentFormatting(e => {
     // Get the current document
     const document = documents.get(e.textDocument.uri);
@@ -102,12 +108,33 @@ connection.onDocumentFormatting(e => {
     return fitbitFormat.onDocumentFormatting(document, e);
 });
 
+/**
+ * Format the range
+ */
 connection.onDocumentRangeFormatting(e => {
     // Get the current document
     const document = documents.get(e.textDocument.uri);
     if (document === undefined) { return undefined; }
     // Format
     return fitbitFormat.onDocumentRangeFormatting(document, e);
+});
+
+/**
+ * Add colors
+ */
+connection.onDocumentColor(e => {
+    // Get the current document
+    const document = documents.get(e.textDocument.uri);
+    if (document === undefined) { return undefined; }
+    // Mark colors attributs
+    return fitbitColors.onDocumentColor(document);
+});
+
+/**
+ * User edited a color -> return the fitbit color or the hexa value
+ */
+connection.onColorPresentation((e) => {
+    return fitbitColors.onColorPresentation(e.color);
 });
 
 // Make the text document manager listen on the connection
