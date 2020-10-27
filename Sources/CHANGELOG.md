@@ -7,6 +7,10 @@
     - Format (to add indentation).
     - Validation.
 
+## Version 0.3.0 - 2020-10-27
+### Added
+- Colors (display and edit).
+
 ## Version 0.2.9 - 2020-10-27
 ### Added
 - Auto indentation when closing or adding an SVG element.

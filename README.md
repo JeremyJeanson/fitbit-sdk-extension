@@ -26,12 +26,16 @@ This extension is under active development. Features will be added over time.
     - [x] Completion (All SVG elements and attributs used by the Fitbit SDK, to avoid errors).
     - [x] Documentation when mouse is hover elements.
     - [x] Format.
+    - [x] Colors (display and edit).
     - [ ] Validation.
 
 # Exemples
 
 Code completion.
 ![Make the edition of SVG easier](Assets/demos/code-completion.gif)
+
+View and edit colors.
+![Colors edition](Assets/demos/colors.gif)
 
 Snippets to define symbols and animations.
 ![An easy way create a custom components](Assets/demos/symbols.gif)
