@@ -97,6 +97,10 @@
         "markers": {
             "start": "^\\s*<!--\\s*#region\\b.*-->",
             "end": "^\\s*<!--\\s*#endregion\\b.*-->"
-        }
+        },
+    },
+    "indentationRules": {
+        "increaseIndentPattern": "^.*<[a-zA-Z]+>$",
+        "decreaseIndentPattern": "^.*<\\/[a-zA-Z]+>$"
     }
 }
