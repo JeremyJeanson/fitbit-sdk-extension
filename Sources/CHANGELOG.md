@@ -7,6 +7,10 @@
     - Format (to add indentation).
     - Validation.
 
+## Version 0.4.0 - 2020-10-28
+### Added
+- Code completion for all attributs of type enumerable.
+
 ## Version 0.3.1 - 2020-10-28
 ### Added
 - Code completion for colors.
