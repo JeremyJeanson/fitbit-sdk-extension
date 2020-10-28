@@ -186,6 +186,7 @@ function analyseLine(line: string, isCurrentline: boolean): IAnalyseResult {
             }
             case "\"":
             case "'": {
+                if (!isCurrentline) { break; }
                 // Test if space was fount
                 if (spaceFound) { break; }
 
