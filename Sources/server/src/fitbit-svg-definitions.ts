@@ -40,6 +40,13 @@ export const enum FitbitElementType {
 }
 
 /**
+ * Type of value (to allow completion of values for attributs)
+ */
+export const enum FitbitValueType {
+    Color
+}
+
+/**
  * Define an Element 
  */
 export interface IFitbitElementDefinition extends IFitbitDefinition {
@@ -52,6 +59,12 @@ export interface IFitbitElementDefinition extends IFitbitDefinition {
  */
 export interface IFitbitAttributDefinition extends IFitbitDefinition {
     type: FitbitAttributType;
+    valueType?: FitbitValueType;
+}
+
+export interface IFitbitValue {
+    type: FitbitValueType,
+    value: string;
 }
 
 /**
@@ -60,6 +73,7 @@ export interface IFitbitAttributDefinition extends IFitbitDefinition {
 export interface FitbitDefinitions {
     elements: IFitbitElementDefinition[];
     attributs: IFitbitAttributDefinition[];
+    values: IFitbitValue[];
 }
 
 /**
@@ -201,8 +215,14 @@ export const fitbitDefinitions: FitbitDefinitions = {
 
         // Visual
         { type: FitbitAttributType.Visual, label: "class", detail: "CSS", documentation: "Classes to apply to the element." },
-        { type: FitbitAttributType.Visual, label: "fill", detail: "Fill color", documentation: "Color to fill the element or inner elements." },
-        { type: FitbitAttributType.Visual, label: "viewport-fill", detail: "Viewport fill color", documentation: "Color to fill the element or inner elements." },
+        {
+            type: FitbitAttributType.Visual, label: "fill", detail: "Fill color", documentation: "Color to fill the element or inner elements.",
+            valueType: FitbitValueType.Color
+        },
+        {
+            type: FitbitAttributType.Visual, label: "viewport-fill", detail: "Viewport fill color", documentation: "Color to fill the element or inner elements.",
+            valueType: FitbitValueType.Color
+        },
         { type: FitbitAttributType.Visual, label: "opacity", detail: "Opacity", documentation: "Specifies the opacity of the element (between 0 and 1)." },
         { type: FitbitAttributType.Visual, label: "visibility", detail: "Visibility", insertText: "visibility=\"${1|visible,hidden|}\"", documentation: "Specifies if the line should be `visible` or `hidden`." },
         { type: FitbitAttributType.Visual, label: "display", detail: "Display", insertText: "display=\"${1|none,inline,inherit|}\"", documentation: "none, inline or inherit." },
@@ -278,5 +298,154 @@ export const fitbitDefinitions: FitbitDefinitions = {
         // Transformation Animations
         { type: FitbitAttributType.TransformationAnimation, label: "attributeType", detail: "Type of transformation", insertText: "attributeType=\"${1|translate,rotate,scale|}\"", documentation: "specifies the transformation to animate: `translate, `rotate`, or `scale`." },
         { type: FitbitAttributType.TransformationAnimation, label: "from", detail: "From", documentation: "Specify the start value of a `<animateTransform>`." },
+    ],
+    values: [
+        { type: FitbitValueType.Color, value: "aliceblue" },
+        { type: FitbitValueType.Color, value: "antiquewhite" },
+        { type: FitbitValueType.Color, value: "aqua" },
+        { type: FitbitValueType.Color, value: "aquamarine" },
+        { type: FitbitValueType.Color, value: "azure" },
+        { type: FitbitValueType.Color, value: "beige" },
+        { type: FitbitValueType.Color, value: "bisque" },
+        { type: FitbitValueType.Color, value: "black" },
+        { type: FitbitValueType.Color, value: "blanchedalmond" },
+        { type: FitbitValueType.Color, value: "blue" },
+        { type: FitbitValueType.Color, value: "blueviolet" },
+        { type: FitbitValueType.Color, value: "brown" },
+        { type: FitbitValueType.Color, value: "burlywood" },
+        { type: FitbitValueType.Color, value: "cadetblue" },
+        { type: FitbitValueType.Color, value: "chartreuse" },
+        { type: FitbitValueType.Color, value: "chocolate" },
+        { type: FitbitValueType.Color, value: "coral" },
+        { type: FitbitValueType.Color, value: "cornflowerblue" },
+        { type: FitbitValueType.Color, value: "cornsilk" },
+        { type: FitbitValueType.Color, value: "crimson" },
+        { type: FitbitValueType.Color, value: "cyan" },
+        { type: FitbitValueType.Color, value: "darkblue" },
+        { type: FitbitValueType.Color, value: "darkcyan" },
+        { type: FitbitValueType.Color, value: "darkgoldenrod" },
+        { type: FitbitValueType.Color, value: "darkgray" },
+        { type: FitbitValueType.Color, value: "darkgreen" },
+        { type: FitbitValueType.Color, value: "darkgrey" },
+        { type: FitbitValueType.Color, value: "darkkhaki" },
+        { type: FitbitValueType.Color, value: "darkmagenta" },
+        { type: FitbitValueType.Color, value: "darkolivegreen" },
+        { type: FitbitValueType.Color, value: "darkorange" },
+        { type: FitbitValueType.Color, value: "darkorchid" },
+        { type: FitbitValueType.Color, value: "darkred" },
+        { type: FitbitValueType.Color, value: "darksalmon" },
+        { type: FitbitValueType.Color, value: "darkseagreen" },
+        { type: FitbitValueType.Color, value: "darkslateblue" },
+        { type: FitbitValueType.Color, value: "darkslategray" },
+        { type: FitbitValueType.Color, value: "darkslategrey" },
+        { type: FitbitValueType.Color, value: "darkturquoise" },
+        { type: FitbitValueType.Color, value: "darkviolet" },
+        { type: FitbitValueType.Color, value: "deeppink" },
+        { type: FitbitValueType.Color, value: "deepskyblue" },
+        { type: FitbitValueType.Color, value: "dimgray" },
+        { type: FitbitValueType.Color, value: "dimgrey" },
+        { type: FitbitValueType.Color, value: "dodgerblue" },
+        { type: FitbitValueType.Color, value: "firebrick" },
+        { type: FitbitValueType.Color, value: "floralwhite" },
+        { type: FitbitValueType.Color, value: "forestgreen" },
+        { type: FitbitValueType.Color, value: "fuchsia" },
+        { type: FitbitValueType.Color, value: "gainsboro" },
+        { type: FitbitValueType.Color, value: "ghostwhite" },
+        { type: FitbitValueType.Color, value: "gold" },
+        { type: FitbitValueType.Color, value: "goldenrod" },
+        { type: FitbitValueType.Color, value: "gray" },
+        { type: FitbitValueType.Color, value: "green" },
+        { type: FitbitValueType.Color, value: "greenyellow" },
+        { type: FitbitValueType.Color, value: "grey" },
+        { type: FitbitValueType.Color, value: "honeydew" },
+        { type: FitbitValueType.Color, value: "hotpink" },
+        { type: FitbitValueType.Color, value: "indianred" },
+        { type: FitbitValueType.Color, value: "indigo" },
+        { type: FitbitValueType.Color, value: "ivory" },
+        { type: FitbitValueType.Color, value: "khaki" },
+        { type: FitbitValueType.Color, value: "lavender" },
+        { type: FitbitValueType.Color, value: "lavenderblush" },
+        { type: FitbitValueType.Color, value: "lawngreen" },
+        { type: FitbitValueType.Color, value: "lemonchiffon" },
+        { type: FitbitValueType.Color, value: "lightblue" },
+        { type: FitbitValueType.Color, value: "lightcoral" },
+        { type: FitbitValueType.Color, value: "lightcyan" },
+        { type: FitbitValueType.Color, value: "lightgoldenrodyellow" },
+        { type: FitbitValueType.Color, value: "lightgray" },
+        { type: FitbitValueType.Color, value: "lightgreen" },
+        { type: FitbitValueType.Color, value: "lightgrey" },
+        { type: FitbitValueType.Color, value: "lightpink" },
+        { type: FitbitValueType.Color, value: "lightsalmon" },
+        { type: FitbitValueType.Color, value: "lightseagreen" },
+        { type: FitbitValueType.Color, value: "lightskyblue" },
+        { type: FitbitValueType.Color, value: "lightslategray" },
+        { type: FitbitValueType.Color, value: "lightslategrey" },
+        { type: FitbitValueType.Color, value: "lightsteelblue" },
+        { type: FitbitValueType.Color, value: "lightyellow" },
+        { type: FitbitValueType.Color, value: "lime" },
+        { type: FitbitValueType.Color, value: "limegreen" },
+        { type: FitbitValueType.Color, value: "linen" },
+        { type: FitbitValueType.Color, value: "magenta" },
+        { type: FitbitValueType.Color, value: "maroon" },
+        { type: FitbitValueType.Color, value: "mediumaquamarine" },
+        { type: FitbitValueType.Color, value: "mediumblue" },
+        { type: FitbitValueType.Color, value: "mediumorchid" },
+        { type: FitbitValueType.Color, value: "mediumpurple" },
+        { type: FitbitValueType.Color, value: "mediumseagreen" },
+        { type: FitbitValueType.Color, value: "mediumslateblue" },
+        { type: FitbitValueType.Color, value: "mediumspringgreen" },
+        { type: FitbitValueType.Color, value: "mediumturquoise" },
+        { type: FitbitValueType.Color, value: "mediumvioletred" },
+        { type: FitbitValueType.Color, value: "midnightblue" },
+        { type: FitbitValueType.Color, value: "mintcream" },
+        { type: FitbitValueType.Color, value: "mistyrose" },
+        { type: FitbitValueType.Color, value: "moccasin" },
+        { type: FitbitValueType.Color, value: "navajowhite" },
+        { type: FitbitValueType.Color, value: "navy" },
+        { type: FitbitValueType.Color, value: "oldlace" },
+        { type: FitbitValueType.Color, value: "olive" },
+        { type: FitbitValueType.Color, value: "olivedrab" },
+        { type: FitbitValueType.Color, value: "orange" },
+        { type: FitbitValueType.Color, value: "orangered" },
+        { type: FitbitValueType.Color, value: "orchid" },
+        { type: FitbitValueType.Color, value: "palegoldenrod" },
+        { type: FitbitValueType.Color, value: "palegreen" },
+        { type: FitbitValueType.Color, value: "paleturquoise" },
+        { type: FitbitValueType.Color, value: "palevioletred" },
+        { type: FitbitValueType.Color, value: "papayawhip" },
+        { type: FitbitValueType.Color, value: "peachpuff" },
+        { type: FitbitValueType.Color, value: "peru" },
+        { type: FitbitValueType.Color, value: "pink" },
+        { type: FitbitValueType.Color, value: "plum" },
+        { type: FitbitValueType.Color, value: "powderblue" },
+        { type: FitbitValueType.Color, value: "purple" },
+        { type: FitbitValueType.Color, value: "red" },
+        { type: FitbitValueType.Color, value: "rosybrown" },
+        { type: FitbitValueType.Color, value: "royalblue" },
+        { type: FitbitValueType.Color, value: "saddlebrown" },
+        { type: FitbitValueType.Color, value: "salmon" },
+        { type: FitbitValueType.Color, value: "sandybrown" },
+        { type: FitbitValueType.Color, value: "seagreen" },
+        { type: FitbitValueType.Color, value: "seashell" },
+        { type: FitbitValueType.Color, value: "sienna" },
+        { type: FitbitValueType.Color, value: "silver" },
+        { type: FitbitValueType.Color, value: "skyblue" },
+        { type: FitbitValueType.Color, value: "slateblue" },
+        { type: FitbitValueType.Color, value: "slategray" },
+        { type: FitbitValueType.Color, value: "slategrey" },
+        { type: FitbitValueType.Color, value: "snow" },
+        { type: FitbitValueType.Color, value: "springgreen" },
+        { type: FitbitValueType.Color, value: "steelblue" },
+        { type: FitbitValueType.Color, value: "tan" },
+        { type: FitbitValueType.Color, value: "teal" },
+        { type: FitbitValueType.Color, value: "thistle" },
+        { type: FitbitValueType.Color, value: "tomato" },
+        { type: FitbitValueType.Color, value: "turquoise" },
+        { type: FitbitValueType.Color, value: "violet" },
+        { type: FitbitValueType.Color, value: "wheat" },
+        { type: FitbitValueType.Color, value: "white" },
+        { type: FitbitValueType.Color, value: "whitesmoke" },
+        { type: FitbitValueType.Color, value: "yellow" },
+        { type: FitbitValueType.Color, value: "yellowgreen" }
     ]
 };

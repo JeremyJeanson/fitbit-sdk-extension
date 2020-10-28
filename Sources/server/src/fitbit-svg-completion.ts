@@ -1,6 +1,6 @@
 import { CompletionItem, CompletionItemKind, InsertTextFormat, MarkupKind, Range, TextDocumentPositionParams } from "vscode-languageserver";
 import { TextDocument } from "vscode-languageserver-textdocument";
-import { FitbitElementType, fitbitDefinitions, IFitbitAttributDefinition, IFitbitElementDefinition } from "./fitbit-svg-definitions";
+import { FitbitElementType, fitbitDefinitions, IFitbitAttributDefinition, IFitbitElementDefinition, IFitbitValue, FitbitValueType } from "./fitbit-svg-definitions";
 
 interface IAnalyseResult {
     /**
@@ -16,7 +16,12 @@ interface IAnalyseResult {
     /**
      * The current word is attached to an existing markup
      */
-    parent?: string;
+    parentElement?: string;
+
+    /**
+     * The current word is a value of an attribut
+     */
+    attribut?: string;
 
     /**
      * The analyse is not finished. It need data from previous lines
@@ -41,9 +46,15 @@ export function oncompletion(document: TextDocument, params: TextDocumentPositio
     if (analyse === undefined) { return getCompletionItemsForAnElement(fitbitDefinitions.elements, false); }
 
     // Parent markup found -> return arguments
-    if (analyse.parent !== undefined) {
-        const attributs = filterAttributes(analyse.parent, analyse.currentWord);
+    if (analyse.parentElement !== undefined) {
+        const attributs = filterAttributes(analyse.parentElement, analyse.currentWord);
         return getCompletionItemsForAnAttribut(attributs);
+    }
+
+    // Value of an attribut
+    if (analyse.attribut !== undefined) {
+        const values = filterValues(analyse.attribut, analyse.currentWord);
+        return getCompletionItemsForAValue(values);
     }
 
     // No parent -> return all exepted arguments
@@ -80,6 +91,26 @@ function filterAttributes(elementName: string, currentWord: string | undefined):
 }
 
 /**
+ * Filter possible values for an attribut
+ * @param attributName 
+ * @param currentWord 
+ */
+function filterValues(attributName: string, currentWord: string | undefined): IFitbitValue[] {
+    // Try to get the attribut
+    const attribut = fitbitDefinitions.attributs.find(c => c.label.toLowerCase() === attributName);
+    if (attribut === undefined) { return []; }
+
+    // Try to get the type of values
+    const type = attribut.valueType;
+    if (type === undefined) { return []; }
+
+    // Filter
+    return currentWord === undefined
+        ? fitbitDefinitions.values.filter(c => c.type === type)
+        : fitbitDefinitions.values.filter(c => c.type === type && c.value.toLowerCase().startsWith(currentWord));
+}
+
+/**
  * Analyse text from the gieven position
  * @param params 
  */
@@ -95,7 +126,7 @@ function analysePosition(document: TextDocument, params: TextDocumentPositionPar
                 i, 0,
                 i, isCurrentline ? params.position.character : Number.MAX_VALUE));
         // Analyse the line
-        const analyse = analyseLine(line);
+        const analyse = analyseLine(line, isCurrentline);
 
         if (analyse.needMoreAnalyse) {
             // Memorise the nanalyse onn ly if it the current line
@@ -108,7 +139,7 @@ function analysePosition(document: TextDocument, params: TextDocumentPositionPar
                 // Check if parent wqs found
                 if (analyse.currentWordHasMark) {
                     // Get the parent
-                    if (analyse.currentWord !== undefined) { analyse.parent = analyse.currentWord; }
+                    if (analyse.currentWord !== undefined) { analyse.parentElement = analyse.currentWord; }
                     // The current word cannont have mark because this analyse come from a previous line
                     analyse.currentWordHasMark = false;
                 }
@@ -121,7 +152,12 @@ function analysePosition(document: TextDocument, params: TextDocumentPositionPar
     return undefined;
 }
 
-function analyseLine(line: string): IAnalyseResult {
+/**
+ * Analyse a line
+ * @param line 
+ * @param isCurrentline is the line that the user is editing
+ */
+function analyseLine(line: string, isCurrentline: boolean): IAnalyseResult {
     // check the line lenght
     if (line.length === 0) {
         return {
@@ -148,13 +184,26 @@ function analyseLine(line: string): IAnalyseResult {
                 }
                 break;
             }
+            case "\"":
+            case "'": {
+                // Test if space was fount
+                if (spaceFound) { break; }
+
+                // Test if a char could be avaialbel before
+                if (i === 0) { break; }
+
+                // Test if "=" is available
+                if (line[i - 1] === "=") { return getAttributAnalyse(line, i + 1); }
+
+                break;
+            }
             case "<": {
                 if (firstWord === undefined) {
                     if (spaceFound) {
                         return {
                             currentWordHasMark: false,
                             needMoreAnalyse: false,
-                            parent: getFirstWord(line, i + 1)
+                            parentElement: getFirstWord(line, i + 1)
                         };
                     }
                     return {
@@ -166,7 +215,7 @@ function analyseLine(line: string): IAnalyseResult {
                 return {
                     currentWordHasMark: false,
                     currentWord: firstWord,
-                    parent: getFirstWord(line, i + 1),
+                    parentElement: getFirstWord(line, i + 1),
                     needMoreAnalyse: false
                 };
             }
@@ -214,15 +263,44 @@ function getFirstWord(line: string, index: number): string | undefined {
     return sanitateWord(words[0]);
 }
 
+function getAttributAnalyse(line: string, index: number): IAnalyseResult {
+    // GET the current word -> the value of the attribut
+    const value = sanitateWord(line.substring(index).trim());
+
+    // Get the part before the value (-2 to remove =" or =')
+    const subline = line.substring(0, line.length - 2).trim();
+    if (subline.length === 0) { return { needMoreAnalyse: true, currentWordHasMark: false }; }
+
+    // Test if it contain spaces
+    const spaceIndex = subline.lastIndexOf(" ");
+    let attribut: string;
+    // No space
+    if (spaceIndex < 0) {
+        attribut = subline;
+    }
+    else {
+        attribut = subline.substring(spaceIndex + 1);
+    }
+
+    return {
+        needMoreAnalyse: false,
+        currentWordHasMark: false,
+        attribut: sanitateWord(attribut),
+        currentWord: value
+    };
+}
+
 /**
  * Remove spacial chars from the givent key word
  * @param word 
  */
 function sanitateWord(word: string): string {
+    // Sanitate
     for (let i = sanitateChars.length - 1; i >= 0; i--) {
         if (word.indexOf(sanitateChars[i]) >= 0) { word = word.replace(sanitateChars[i], ""); }
     }
-    return word.toLowerCase();
+    // Lower and trim
+    return word.trim().toLowerCase();
 }
 
 /**
@@ -320,6 +398,49 @@ function getCompletionItemForAnAttribut(definition: IFitbitAttributDefinition): 
         kind: CompletionItemKind.Property,
     };
 }
+
+/**
+ * Translate definitions to completion items
+ * @param valuesFiltered 
+ */
+function getCompletionItemsForAValue(valuesFiltered: IFitbitValue[]): CompletionItem[] {
+    if (valuesFiltered.length === 0) { return []; }
+    const result: CompletionItem[] = [];
+    const kind = getValueCompletionItemKind(valuesFiltered[0].type);
+    for (let i = 0; i < valuesFiltered.length; i++) {
+        result.push(getCompletionItemForAValue(valuesFiltered[i], kind));
+    }
+    return result;
+}
+
+/**
+ * Get the kind of completion for a type of value
+ * @param type 
+ */
+function getValueCompletionItemKind(type: FitbitValueType): CompletionItemKind {
+    switch (type) {
+        case FitbitValueType.Color: return CompletionItemKind.Color;
+    }
+    return CompletionItemKind.Value;
+}
+
+/**
+ * Translate definition to completion item
+ * @param value 
+ * @param currentWordHasMark 
+ */
+function getCompletionItemForAValue(value: IFitbitValue, kind: CompletionItemKind): CompletionItem {
+    // Index of the data
+    const data = fitbitDefinitions.values.indexOf(value);
+
+    // Attribut
+    return {
+        data: data,
+        label: value.value,
+        kind: kind,
+    };
+}
+
 /**
  * Completion need more informations
  * @param e 
