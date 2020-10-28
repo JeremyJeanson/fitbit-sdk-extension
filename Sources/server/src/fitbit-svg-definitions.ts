@@ -42,8 +42,27 @@ export const enum FitbitElementType {
 /**
  * Type of value (to allow completion of values for attributs)
  */
+
 export const enum FitbitValueType {
-    Color
+    Color,
+    Visibility,
+    Display,
+    PointerEvents,
+    StrokeLinecap,
+    TextAnchor,
+    TextOverflow,
+    FontFamily,
+    FontWeigh,
+    TextDecoration,
+    DisplayAlign,
+    Transform,
+    GradientType,
+    AttributeName,
+    RelationType,
+    AnimationsBeginEndEvents,
+    AnimationsFinalState,
+    AnimationsEasing,
+    TransformationType
 }
 
 /**
@@ -224,13 +243,25 @@ export const fitbitDefinitions: FitbitDefinitions = {
             valueType: FitbitValueType.Color
         },
         { type: FitbitAttributType.Visual, label: "opacity", detail: "Opacity", documentation: "Specifies the opacity of the element (between 0 and 1)." },
-        { type: FitbitAttributType.Visual, label: "visibility", detail: "Visibility", insertText: "visibility=\"${1|visible,hidden|}\"", documentation: "Specifies if the line should be `visible` or `hidden`." },
-        { type: FitbitAttributType.Visual, label: "display", detail: "Display", insertText: "display=\"${1|none,inline,inherit|}\"", documentation: "none, inline or inherit." },
-        { type: FitbitAttributType.Visual, label: "pointer-events", detail: "Pointer events", insertText: "pointer-events=\"visible\"", documentation: "Enable touch events to the element.\n\n You can attach a handler to the `mouseup`, `mousedown` and `mousemove` events." },
+        {
+            type: FitbitAttributType.Visual, label: "visibility", detail: "Visibility", insertText: "visibility=\"${1|visible,hidden|}\"", documentation: "Specifies if the line should be `visible` or `hidden`.",
+            valueType: FitbitValueType.Visibility
+        },
+        {
+            type: FitbitAttributType.Visual, label: "display", detail: "Display", insertText: "display=\"${1|none,inline,inherit|}\"", documentation: "none, inline or inherit.",
+            valueType: FitbitValueType.Display
+        },
+        {
+            type: FitbitAttributType.Visual, label: "pointer-events", detail: "Pointer events", insertText: "pointer-events=\"visible\"", documentation: "Enable touch events to the element.\n\n You can attach a handler to the `mouseup`, `mousedown` and `mousemove` events.",
+            valueType: FitbitValueType.PointerEvents
+        },
 
         //Line
         { type: FitbitAttributType.Line, label: "stroke-width", detail: "Thickness", documentation: "The thickness of the line.\n\nMaximum 32" },
-        { type: FitbitAttributType.Line, label: "stroke-linecap", detail: "End caps of lines", insertText: "stroke-linecap=\"${1|round,butt|}\"", documentation: "`round` or `butt`, defaults to `round`, specifies if the end caps of lines should be rounded or squared." },
+        {
+            type: FitbitAttributType.Line, label: "stroke-linecap", detail: "End caps of lines", insertText: "stroke-linecap=\"${1|round,butt|}\"", documentation: "`round` or `butt`, defaults to `round`, specifies if the end caps of lines should be rounded or squared.",
+            valueType: FitbitValueType.StrokeLinecap
+        },
 
         // Circles
         { type: FitbitAttributType.Circle, label: "cx", detail: "Center x", documentation: "Coordinate x of the center of the circle" },
@@ -241,18 +272,36 @@ export const fitbitDefinitions: FitbitDefinitions = {
         { type: FitbitAttributType.Href, label: "href", detail: "Image href", documentation: "Relative path to the element to use." },
 
         // Text
-        { type: FitbitAttributType.Text, label: "text-anchor", detail: "Text anchor", insertText: "text-anchor=\"${1|start,middle,end|}\"", documentation: "Can be `start`, `middle`, `end`." },
+        {
+            type: FitbitAttributType.Text, label: "text-anchor", detail: "Text anchor", insertText: "text-anchor=\"${1|start,middle,end|}\"", documentation: "Can be `start`, `middle`, `end`.",
+            valueType: FitbitValueType.TextAnchor
+        },
         { type: FitbitAttributType.Text, label: "text-buffer", detail: "Text buffer", documentation: "Holds the text string." },
         { type: FitbitAttributType.Text, label: "text-length", detail: "Text length", documentation: "Specifies the number of characters to reserve for the text string. Will be rounded up to a multiple of 4." },
         { type: FitbitAttributType.Text, label: "letter-spacing", detail: "Letter spacing", documentation: "Letter spacing in pixels." },
-        { type: FitbitAttributType.Text, label: "text-overflow", detail: "Text overflow", insertText: "text-overflow=\"${1|clip,ellipsis|}\"", documentation: "Can be `clip` or `ellipsis`." },
-        { type: FitbitAttributType.Text, label: "font-family", detail: "Font family", insertText: "font-family=\"${1|System-Regular,System-Light,System-Bold|}\"", documentation: "Embedding custom fonts is not supported at this time, but we recommend using a library like `fitfont` to generate images of each character.\n\nSystem Font:\n System-Regular, System-Light, System-Bold" },
+        {
+            type: FitbitAttributType.Text, label: "text-overflow", detail: "Text overflow", insertText: "text-overflow=\"${1|clip,ellipsis|}\"", documentation: "Can be `clip` or `ellipsis`.",
+            valueType: FitbitValueType.TextOverflow
+        },
+        {
+            type: FitbitAttributType.Text, label: "font-family", detail: "Font family", insertText: "font-family=\"${1|System-Regular,System-Light,System-Bold|}\"", documentation: "Embedding custom fonts is not supported at this time, but we recommend using a library like `fitfont` to generate images of each character.\n\nSystem Font:\n System-Regular, System-Light, System-Bold",
+            valueType: FitbitValueType.FontFamily
+        },
         { type: FitbitAttributType.Text, label: "font-size", detail: "Font size:", documentation: "Specifies the font size in pixels." },
-        { type: FitbitAttributType.Text, label: "font-weigh", detail: "Font weigh", insertText: "font-weigh=\"${1|light,regular,bold|}\"", documentation: "specifies the character outline thickness (`light`, `regular`, or `bold`)." },
-        { type: FitbitAttributType.Text, label: "text-decoration", detail: "Text decoration", insertText: "text-decoration=\"underline\"", documentation: "Specifies the if the text will be underlined or not." },
+        {
+            type: FitbitAttributType.Text, label: "font-weigh", detail: "Font weigh", insertText: "font-weigh=\"${1|light,regular,bold|}\"", documentation: "specifies the character outline thickness (`light`, `regular`, or `bold`).",
+            valueType: FitbitValueType.FontWeigh
+        },
+        {
+            type: FitbitAttributType.Text, label: "text-decoration", detail: "Text decoration", insertText: "text-decoration=\"underline\"", documentation: "Specifies the if the text will be underlined or not.",
+            valueType: FitbitValueType.TextDecoration
+        },
 
         // Textarea
-        { type: FitbitAttributType.TextArea, label: "display-align", detail: "Display align", insertText: "=\"${1|before,center,after|}\"", documentation: "Specifies the vertical alignment (`before`, `center`, `after`)." },
+        {
+            type: FitbitAttributType.TextArea, label: "display-align", detail: "Display align", insertText: "=\"${1|before,center,after|}\"", documentation: "Specifies the vertical alignment (`before`, `center`, `after`).",
+            valueType: FitbitValueType.DisplayAlign
+        },
         { type: FitbitAttributType.TextArea, label: "line-increment", detail: "Line increment", documentation: "Specifies the line, or row height." },
         { type: FitbitAttributType.TextArea, label: "rows", detail: "Rows number", documentation: "Constrains the number of rows." },
 
@@ -262,44 +311,84 @@ export const fitbitDefinitions: FitbitDefinitions = {
         { type: FitbitAttributType.Arc, label: "sweep-angle", detail: "Sweep angle", documentation: "Length of the arc in degrees." },
 
         // G container
-        { type: FitbitAttributType.Transform, label: "transform", detail: "Transform", insertText: "transform=\"${1|translate(50%\\,50%),rotate(45),scale(2)|}\"", documentation: "The `<g>` container can be used to translate (move), rotate, and/or scale, all of the elements it contains.\n\nThe transformations are applied to the coordinates of its child elements.\n\nThe `<animateTransform>` can be used to animate the `<g>` transformations. It is the only element that supports rotation and the only one that can be a valid parent of `<animateTransform>`." },
+        {
+            type: FitbitAttributType.Transform, label: "transform", detail: "Transform", insertText: "transform=\"${1|translate(50%\\,50%),rotate(45),scale(2)|}\"", documentation: "The `<g>` container can be used to translate (move), rotate, and/or scale, all of the elements it contains.\n\nThe transformations are applied to the coordinates of its child elements.\n\nThe `<animateTransform>` can be used to animate the `<g>` transformations. It is the only element that supports rotation and the only one that can be a valid parent of `<animateTransform>`.",
+            valueType: FitbitValueType.Transform
+        },
 
         // Gradient Rectangle
         { type: FitbitAttributType.Gradient, label: "gradient-x1", detail: "Gradient x1", documentation: "Define x value of the first set of coordinates." },
         { type: FitbitAttributType.Gradient, label: "gradient-y1", detail: "Gradient y1", documentation: "Define y value of the first set of coordinates." },
         { type: FitbitAttributType.Gradient, label: "gradient-x2", detail: "Gradient x2", documentation: "Define x value of the second set of coordinates." },
         { type: FitbitAttributType.Gradient, label: "gradient-y2", detail: "Gradient y2", documentation: "Define y value of the second set of coordinates." },
-        { type: FitbitAttributType.Gradient, label: "gradient-type", detail: "Gradient type", insertText: "gradient-type=\"${1|linear,radial,bilinear|}\"", documentation: "The type of effect to use, linear, radial, or bilinear." },
-        { type: FitbitAttributType.Gradient, label: "gradient-color1", detail: "Gradient color 1", documentation: "specify colors that are used in all gradient types." },
-        { type: FitbitAttributType.Gradient, label: "gradient-color2", detail: "Gradient color 2", documentation: "specify colors that are used in all gradient types." },
-        { type: FitbitAttributType.Gradient, label: "gradient-color3", detail: "Gradient color 3", documentation: "specify colors that are only used in bilinear gradients." },
-        { type: FitbitAttributType.Gradient, label: "gradient-color4", detail: "Gradient color 4", documentation: "specify colors that are only used in bilinear gradients." },
+        {
+            type: FitbitAttributType.Gradient, label: "gradient-type", detail: "Gradient type", insertText: "gradient-type=\"${1|linear,radial,bilinear|}\"", documentation: "The type of effect to use, linear, radial, or bilinear.",
+            valueType: FitbitValueType.GradientType
+        },
+        {
+            type: FitbitAttributType.Gradient, label: "gradient-color1", detail: "Gradient color 1", documentation: "specify colors that are used in all gradient types.",
+            valueType: FitbitValueType.Color
+        },
+        {
+            type: FitbitAttributType.Gradient, label: "gradient-color2", detail: "Gradient color 2", documentation: "specify colors that are used in all gradient types.",
+            valueType: FitbitValueType.Color
+        },
+        {
+            type: FitbitAttributType.Gradient, label: "gradient-color3", detail: "Gradient color 3", documentation: "specify colors that are only used in bilinear gradients.",
+            valueType: FitbitValueType.Color
+        },
+        {
+            type: FitbitAttributType.Gradient, label: "gradient-color4", detail: "Gradient color 4", documentation: "specify colors that are only used in bilinear gradients.",
+            valueType: FitbitValueType.Color
+        },
         { type: FitbitAttributType.Gradient, label: "gradient-opacity1", detail: "Gradient opacity 1", documentation: "Opacity of gradient color ." },
         { type: FitbitAttributType.Gradient, label: "gradient-opacity2", detail: "Gradient opacity 2", documentation: "Opacity of gradient color ." },
         { type: FitbitAttributType.Gradient, label: "gradient-opacity3", detail: "Gradient opacity 3", documentation: "Opacity of gradient color ." },
         { type: FitbitAttributType.Gradient, label: "gradient-opacity4", detail: "Gradient opacity 4", documentation: "Opacity of gradient color ." },
 
         // Template Symbols
-        { type: FitbitAttributType.Set, label: "attributeName", detail: "Attribute name to set", insertText: "attributeName=\"${1|x,y,height,width,href,text-buffer,fill,opacity,cx,cy,r|}\"", documentation: "Attribut to set to `<symbol>` or `<animation>`." },
+        {
+            type: FitbitAttributType.Set, label: "attributeName", detail: "Attribute name to set", insertText: "attributeName=\"${1|x,y,height,width,href,text-buffer,fill,opacity,cx,cy,r|}\"", documentation: "Attribut to set to `<symbol>` or `<animation>`.",
+            valueType: FitbitValueType.AttributeName
+        },
         { type: FitbitAttributType.Set, label: "to", detail: "To", documentation: "Value to set on the child of a `<symbol>` element or an `<animation>`." },
 
         // Link
-        { type: FitbitAttributType.Link, label: "rel", detail: "Relation type", insertText: "rel=\"${1|stylesheet,import|}\"", documentation: "Add a link to a file to use." },
+        {
+            type: FitbitAttributType.Link, label: "rel", detail: "Relation type", insertText: "rel=\"${1|stylesheet,import|}\"", documentation: "Add a link to a file to use.",
+            valueType: FitbitValueType.RelationType
+        },
 
         // Animations
-        { type: FitbitAttributType.Animation, label: "begin", detail: "Begin event", insertText: "begin=\"${1|activate,click,disable,enable,load,mousedown,mousemove,mouseup|}\"", documentation: "Specify the event(s) that start the animation." },
-        { type: FitbitAttributType.Animation, label: "end", detail: "End event", insertText: "end=\"${1|activate,click,disable,enable,load,mousedown,mousemove,mouseup|}\"", documentation: "Specify the event(s) that end the animation." },
-        { type: FitbitAttributType.Animation, label: "final", detail: "Final state", insertText: "final=\"${1|freeze,remove,restore,keep|}\"", documentation: "Specifies the value of the attribute once the animation ends." },
-        { type: FitbitAttributType.Animation, label: "easing", detail: "Easing", insertText: "easing=\"${1|linear,ease,ease-in,ease-out,ease-in-out,ease-out-in|}\"", documentation: "Can be used to specify a non-linear change in the animation." },
+        {
+            type: FitbitAttributType.Animation, label: "begin", detail: "Begin event", insertText: "begin=\"${1|activate,click,disable,enable,load,mousedown,mousemove,mouseup|}\"", documentation: "Specify the event(s) that start the animation.",
+            valueType: FitbitValueType.AnimationsBeginEndEvents
+        },
+        {
+            type: FitbitAttributType.Animation, label: "end", detail: "End event", insertText: "end=\"${1|activate,click,disable,enable,load,mousedown,mousemove,mouseup|}\"", documentation: "Specify the event(s) that end the animation.",
+            valueType: FitbitValueType.AnimationsBeginEndEvents
+        },
+        {
+            type: FitbitAttributType.Animation, label: "final", detail: "Final state", insertText: "final=\"${1|freeze,remove,restore,keep|}\"", documentation: "Specifies the value of the attribute once the animation ends.",
+            valueType: FitbitValueType.AnimationsFinalState
+        },
+        {
+            type: FitbitAttributType.Animation, label: "easing", detail: "Easing", insertText: "easing=\"${1|linear,ease,ease-in,ease-out,ease-in-out,ease-out-in|}\"", documentation: "Can be used to specify a non-linear change in the animation.",
+            valueType: FitbitValueType.AnimationsEasing
+        },
         { type: FitbitAttributType.Animation, label: "dur", detail: "Duration", documentation: "Can be used to specify a duration for an animation." },
         { type: FitbitAttributType.Animation, label: "repeatCount", detail: "Repeat count ", documentation: "Can be used to repeat the animations x times." },
         { type: FitbitAttributType.Animation, label: "repeatDur", detail: "Repeat duration", documentation: "Can be used to repeat the animations during x seconds." },
 
         // Transformation Animations
-        { type: FitbitAttributType.TransformationAnimation, label: "attributeType", detail: "Type of transformation", insertText: "attributeType=\"${1|translate,rotate,scale|}\"", documentation: "specifies the transformation to animate: `translate, `rotate`, or `scale`." },
+        {
+            type: FitbitAttributType.TransformationAnimation, label: "attributeType", detail: "Type of transformation", insertText: "attributeType=\"${1|translate,rotate,scale|}\"", documentation: "specifies the transformation to animate: `translate, `rotate`, or `scale`.",
+            valueType: FitbitValueType.TransformationType
+        },
         { type: FitbitAttributType.TransformationAnimation, label: "from", detail: "From", documentation: "Specify the start value of a `<animateTransform>`." },
     ],
     values: [
+        // Web Color Names
         { type: FitbitValueType.Color, value: "aliceblue" },
         { type: FitbitValueType.Color, value: "antiquewhite" },
         { type: FitbitValueType.Color, value: "aqua" },
@@ -446,6 +535,115 @@ export const fitbitDefinitions: FitbitDefinitions = {
         { type: FitbitValueType.Color, value: "white" },
         { type: FitbitValueType.Color, value: "whitesmoke" },
         { type: FitbitValueType.Color, value: "yellow" },
-        { type: FitbitValueType.Color, value: "yellowgreen" }
+        { type: FitbitValueType.Color, value: "yellowgreen" },
+        // Fitbit Named Colors
+        { type: FitbitValueType.Color, value: "fb-aqua" },
+        { type: FitbitValueType.Color, value: "fb-black" },
+        { type: FitbitValueType.Color, value: "fb-blue" },
+        { type: FitbitValueType.Color, value: "fb-cerulean" },
+        { type: FitbitValueType.Color, value: "fb-cyan" },
+        { type: FitbitValueType.Color, value: "fb-dark-gray" },
+        { type: FitbitValueType.Color, value: "fb-extra-dark-gray" },
+        { type: FitbitValueType.Color, value: "fb-green" },
+        { type: FitbitValueType.Color, value: "fb-green-press" },
+        { type: FitbitValueType.Color, value: "fb-indigo" },
+        { type: FitbitValueType.Color, value: "fb-lavender" },
+        { type: FitbitValueType.Color, value: "fb-light-gray" },
+        { type: FitbitValueType.Color, value: "fb-lime" },
+        { type: FitbitValueType.Color, value: "fb-magenta" },
+        { type: FitbitValueType.Color, value: "fb-mint" },
+        { type: FitbitValueType.Color, value: "fb-orange" },
+        { type: FitbitValueType.Color, value: "fb-peach" },
+        { type: FitbitValueType.Color, value: "fb-pink" },
+        { type: FitbitValueType.Color, value: "fb-plum" },
+        { type: FitbitValueType.Color, value: "fb-purple" },
+        { type: FitbitValueType.Color, value: "fb-red" },
+        { type: FitbitValueType.Color, value: "fb-slate" },
+        { type: FitbitValueType.Color, value: "fb-slate-press" },
+        { type: FitbitValueType.Color, value: "fb-violet" },
+        { type: FitbitValueType.Color, value: "fb-white" },
+        { type: FitbitValueType.Color, value: "fb-yellow" },
+        { type: FitbitValueType.Color, value: "fb-yellow-press" },
+        // Display
+        { type: FitbitValueType.Visibility, value: "visible" },
+        { type: FitbitValueType.Visibility, value: "hidden" },
+        // Display
+        { type: FitbitValueType.Display, value: "none" },
+        { type: FitbitValueType.Display, value: "inline" },
+        { type: FitbitValueType.Display, value: "inherit" },
+        // Pointer events
+        { type: FitbitValueType.PointerEvents, value: "visible" },
+        // End caps of lines
+        { type: FitbitValueType.StrokeLinecap, value: "round" },
+        { type: FitbitValueType.StrokeLinecap, value: "butt" },
+        // Text anchor
+        { type: FitbitValueType.TextAnchor, value: "start" },
+        { type: FitbitValueType.TextAnchor, value: "middle" },
+        { type: FitbitValueType.TextAnchor, value: "end" },
+        // Text overflow
+        { type: FitbitValueType.TextOverflow, value: "clip" },
+        { type: FitbitValueType.TextOverflow, value: "ellipsis" },
+        // Font family
+        { type: FitbitValueType.FontFamily, value: "System-Regular" },
+        { type: FitbitValueType.FontFamily, value: "System-Light" },
+        { type: FitbitValueType.FontFamily, value: "System-Bold" },
+        // Font weigh
+        { type: FitbitValueType.FontWeigh, value: "light" },
+        { type: FitbitValueType.FontWeigh, value: "regular" },
+        { type: FitbitValueType.FontWeigh, value: "bold" },
+        // Text decoration
+        { type: FitbitValueType.TextDecoration, value: "underline" },
+        // Display align
+        { type: FitbitValueType.DisplayAlign, value: "before" },
+        { type: FitbitValueType.DisplayAlign, value: "center" },
+        { type: FitbitValueType.DisplayAlign, value: "after" },
+        // Transform
+        { type: FitbitValueType.Transform, value: "translate(50%,50%)" },
+        { type: FitbitValueType.Transform, value: "rotate(45)" },
+        { type: FitbitValueType.Transform, value: "scale(2)" },
+        // Gradient type
+        { type: FitbitValueType.GradientType, value: "linear" },
+        { type: FitbitValueType.GradientType, value: "radial" },
+        { type: FitbitValueType.GradientType, value: "bilinear" },
+        // Attribute name to set
+        { type: FitbitValueType.AttributeName, value: "x" },
+        { type: FitbitValueType.AttributeName, value: "y" },
+        { type: FitbitValueType.AttributeName, value: "height" },
+        { type: FitbitValueType.AttributeName, value: "width" },
+        { type: FitbitValueType.AttributeName, value: "href" },
+        { type: FitbitValueType.AttributeName, value: "text-buffer" },
+        { type: FitbitValueType.AttributeName, value: "fill" },
+        { type: FitbitValueType.AttributeName, value: "opacity" },
+        { type: FitbitValueType.AttributeName, value: "cx" },
+        { type: FitbitValueType.AttributeName, value: "cy" },
+        { type: FitbitValueType.AttributeName, value: "r" },
+        // Relation type
+        { type: FitbitValueType.RelationType, value: "stylesheet" },
+        { type: FitbitValueType.RelationType, value: "import" },
+        // Animations Begin End events
+        { type: FitbitValueType.AnimationsBeginEndEvents, value: "activate" },
+        { type: FitbitValueType.AnimationsBeginEndEvents, value: "click" },
+        { type: FitbitValueType.AnimationsBeginEndEvents, value: "disable" },
+        { type: FitbitValueType.AnimationsBeginEndEvents, value: "enable" },
+        { type: FitbitValueType.AnimationsBeginEndEvents, value: "load" },
+        { type: FitbitValueType.AnimationsBeginEndEvents, value: "mousedown" },
+        { type: FitbitValueType.AnimationsBeginEndEvents, value: "mousemove" },
+        { type: FitbitValueType.AnimationsBeginEndEvents, value: "mouseup" },
+        // Animation Final state
+        { type: FitbitValueType.AnimationsFinalState, value: "freeze" },
+        { type: FitbitValueType.AnimationsFinalState, value: "remove" },
+        { type: FitbitValueType.AnimationsFinalState, value: "restore" },
+        { type: FitbitValueType.AnimationsFinalState, value: "keep" },
+        // Animation Easing
+        { type: FitbitValueType.AnimationsEasing, value: "linear" },
+        { type: FitbitValueType.AnimationsEasing, value: "ease" },
+        { type: FitbitValueType.AnimationsEasing, value: "ease-in" },
+        { type: FitbitValueType.AnimationsEasing, value: "ease-out" },
+        { type: FitbitValueType.AnimationsEasing, value: "ease-in-out" },
+        { type: FitbitValueType.AnimationsEasing, value: "ease-out-in" },
+        // Type of transformation
+        { type: FitbitValueType.TransformationType, value: "translate" },
+        { type: FitbitValueType.TransformationType, value: "rotate" },
+        { type: FitbitValueType.TransformationType, value: "scale" },
     ]
 };
