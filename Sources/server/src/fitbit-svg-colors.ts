@@ -199,7 +199,7 @@ const colors: IColor[] = [
 export function onDocumentColor(docuement: TextDocument): ColorInformation[] {
     // Search all fill attributs
     const text = docuement.getText();
-    const pattern = /(?<attribut>fill)=["'](?<color>[#a-zA-Z0-9]*)["']/gm;
+    const pattern = /(?<attribut>fill|gradient-color[1-4])=["'](?<color>[#a-zA-Z0-9-]*)["']/gm;
     const result: ColorInformation[] = [];
     let match: RegExpExecArray | null;
 
