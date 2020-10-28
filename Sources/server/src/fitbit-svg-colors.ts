@@ -199,7 +199,7 @@ const colors: IColor[] = [
 export function onDocumentColor(docuement: TextDocument): ColorInformation[] {
     // Search all fill attributs
     const text = docuement.getText();
-    const pattern = /(?<attribut>fill)=["'](?<color>.*)["']/gm;
+    const pattern = /(?<attribut>fill)=["'](?<color>[a-zA-Z]*)["']/gm;
     const result: ColorInformation[] = [];
     let match: RegExpExecArray | null;
 
