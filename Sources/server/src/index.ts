@@ -8,7 +8,7 @@ import {
     InitializeResult,
     HoverParams,
     Hover
-} from "vscode-languageserver";
+} from "vscode-languageserver/node";
 
 import {
     TextDocument
