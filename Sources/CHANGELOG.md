@@ -7,6 +7,10 @@
     - Format (to add indentation).
     - Validation.
 
+## Version 0.5.0 - 2021-12-09
+### Added
+- Upgrade dependencies.
+
 ## Version 0.4.0 - 2020-10-28
 ### Added
 - Code completion for all attributs of type enumerable.
