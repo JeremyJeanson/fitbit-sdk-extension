@@ -4,7 +4,7 @@
 	"repository": "https://github.com/jeremyjeanson/fitbit-sdk-extension",
 	"license": "MIT",
 	"engines": {
-		"vscode": "^1.40.0"
+		"vscode": "^1.63.0"
 	},
 	"dependencies": {
 		"vscode-languageclient": "^7.0.0"
