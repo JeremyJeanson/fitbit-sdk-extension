@@ -7,6 +7,10 @@
     - Format (to add indentation).
     - Validation.
 
+## Version 0.6.1 - 2021-12-15
+### Fixed
+- An error was logged when mouse was hovers SVG code.
+
 ## Version 0.5.0 - 2021-12-09
 ### Added
 - Upgrade dependencies.
