@@ -63,7 +63,7 @@ function getWord(document: TextDocument, position: Position): IWord | undefined 
     const line = document.getText(
         Range.create(
             position.line, 0,
-            position.line, Number.MAX_VALUE));
+            position.line, 1000000));
     // Define the start of the word
     const start = getLimiterStart(line, position.character);
     // Define the end of the word
